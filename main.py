@@ -74,7 +74,7 @@ def do_thing(name):
 
 def lane(play_info):
     positions = {}
-    remainder = ['Top', 'Mid', 'ADC', 'Support', 'Jungle']
+    remainder = ['Top', 'Mid', 'Bottom', 'Bottom', 'Jungle']
     champs = []
     for item in play_info:
         if item['spells'][0] == 'Smite' or item['spells'][1] == 'Smite':  # NOQA
@@ -88,20 +88,35 @@ def lane(play_info):
     for cena in champs:
         soup = get_soup(
             'http://www.lolcounter.com/champions/%s', (cena))
-        elems = soup.select('.lanes')
-        if not elems:
-            elems = soup.select('.roles')
+        elems = soup.select('.block-tabs')
         possibles = elems[0].getText()
         possibles = possibles.strip('\n')
         possibles = possibles.split('\n')
-        if len(possibles) == 1 and possibles[0] != 'Bottom':
+        possibles.remove('All')
+        possibles.remove('General')
+        if 'Jungler' in possibles:
+            possibles.remove('Jungler')
+        if len(possibles) == 1:
             positions[cena] = possibles[0]
             remainder.remove(possibles[0])
             continue
         rejects[cena] = possibles
+    count = 0
     while remainder:
-        pass  # Need to program it to choose what lanes champs go
-    print(remainder)
+        count += 1
+        if count > 5:
+            break
+        for key in rejects:
+            for item in rejects[key]:
+                if item not in remainder:
+                    rejects[key].remove(item)
+            if len(rejects[key]) == 1:
+                positions[key] = rejects[key][0]
+                del rejects[key]
+                remainder.remove(rejects[key][0])
+    if rejects:
+        for key in rejects:
+            positions[key] = rejects[key]
     return positions
 
 
