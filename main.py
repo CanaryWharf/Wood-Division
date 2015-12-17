@@ -5,7 +5,6 @@ import requests
 import sys
 import os
 import bs4
-import re
 from pprint import pprint
 config_file = 'config.json'
 if not os.path.isfile(config_file):
@@ -103,7 +102,7 @@ def lane(play_info):
     count = 0
     while remainder:
         count += 1
-        if count > 30:
+        if count > 6:
             break
         # What is left
         for key in rejects:
@@ -116,20 +115,34 @@ def lane(play_info):
         # Only they can x lane
         current_count = {}
         for key in rejects:
-            for item in current_count:
+            for item in rejects[key]:
                 if item in current_count.keys():
                     current_count[item] += 1
                 else:
-                    current_count
+                    current_count[item] = 1
         for key in current_count:
             if current_count[key] == 1:
-                for item in rejects:
-                    if key in item:
-                        positions[key] = item
-                        remainder.remove(item)
-    if remainder:
+                for val in rejects:
+                    if key in rejects[val]:
+                        positions[val] = key
+                        rejects.pop(val)
+                        remainder.remove(key)
+                        break
+    while remainder:
+        print('Unknown Positions')
+        print(remainder)
         for key in rejects:
-            positions[key] = rejects[key]
+            print(key)
+            nums = len(rejects[key])
+            for x in range(nums):
+                print('%d: %s' % (x+1, rejects[key][x]))
+            try:
+                ans = int(input('>'))
+                positions[key] = rejects[key][ans-1]
+                remainder.remove(rejects[key][ans-1])
+            except ValueError:
+                pass
+
     return positions
 
 
@@ -171,14 +184,14 @@ def counter_rating(friend, bully):
     weak = soup.select('.weak-block .name')
     for item in weak:
         if item.getText() == friend:
-            return 'green'
+            return 0
     soup = get_soup('http://www.lolcounter.com/champions/%s/strong',
                     (bully))
     strong = soup.select('.weak-block .name')
     for item in strong:
         if item.getText() == friend:
-            return 'red'
-    return 'yellow'
+            return 2
+    return 1
 
 
 def counter_tips(friend, bully):
@@ -196,7 +209,7 @@ def counter_tips(friend, bully):
     spectips = []
     for item in data:
         spectips.append(item.getText())
-    return [gentips, spectips]
+    return gentips, spectips
 
 
 def matchup(friendlies, bullies):
@@ -206,9 +219,10 @@ def matchup(friendlies, bullies):
 def run():
     skim = tester()
     friendlies, bullies = teams(skim)
-    friendlylane = lane(friendlies)
-    bullylane = lane(bullies)
-    print(friendlylane)
+    bull_lane = lane(bullies)
+    friend_lane = lane(friendlies)
+    print(bull_lane)
+    print(friend_lane)
 
 
 if __name__ == "__main__":
