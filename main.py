@@ -126,7 +126,10 @@ def lane(play_info):
                     if key in rejects[val]:
                         positions[val] = key
                         rejects.pop(val)
-                        remainder.remove(key)
+                        try:
+                            remainder.remove(key)
+                        except ValueError:
+                            pass
                         break
     while remainder:
         print('Unknown Positions')
@@ -209,20 +212,93 @@ def counter_tips(friend, bully):
     spectips = []
     for item in data:
         spectips.append(item.getText())
+    if not spectips:
+        spectips = gentips
     return gentips, spectips
 
 
-def matchup(friendlies, bullies):
-    pass
+def matchup(friend, bully):
+    levels = ['Green', 'Yellow', 'Red']
+    if len(friend) == 2:
+        Dang = levels[int(sum([counter_rating(friend[0], bully[0]),
+                               counter_rating(friend[0], bully[1]),
+                               counter_rating(friend[1], bully[0]),
+                               counter_rating(friend[1], bully[1])]) / 4)]
+        tips = [counter_tips(friend[0], bully[0]),
+                counter_tips(friend[0], bully[1]),
+                counter_tips(friend[1], bully[0]),
+                counter_tips(friend[1], bully[1])]
+        gentips = []
+        spectips = []
+        for item in tips:
+            gentips.append(item[0])
+            spectips.append(item[1])
+    else:
+        Dang = levels[counter_rating(friend[0], bully[0])]
+        gentips, spectips = counter_tips(friend[0], bully[0])
+    return Dang, gentips, spectips
+
+
+def lane_match(friends, bullies, lane):
+    f1 = []
+    b1 = []
+    for key in bullies:
+        if bullies[key] == lane:
+            x = None
+            for y in friends:
+                if friends[y] == lane:
+                    x = y
+                    friends.pop(x)
+                    break
+            f1.append(x)
+            b1.append(key)
+    return f1, b1
+
+
+def screengen(f1, b1, lane):
+    screen = {}
+    f2, b2 = lane_match(f1, b1, lane)
+    dang, gentips, spectips = matchup(f2, b2)
+    screen['Danger'] = dang
+    screen['General'] = gentips
+    if gentips != spectips:
+        screen['Special'] = spectips
+    return screen
+
+
+def screen_select(screens):
+    end = False
+    pos = ['Top', 'Mid', 'Bot', 'Jungle']
+    while not end:
+        print('Select Screen')
+        for x in range(4):
+            print('%d: %s' % (x+1, pos[x]))
+        print('5: Exit')
+        ans = int(input('>'))
+        if ans == 5:
+            break
+        pprint(screens[ans-1])
+        input('Enter to go back:')
 
 
 def run():
-    skim = tester()
+    skim = match_data(summoner)
     friendlies, bullies = teams(skim)
     bull_lane = lane(bullies)
     friend_lane = lane(friendlies)
-    print(bull_lane)
-    print(friend_lane)
+    topscreen = screengen(friend_lane, bull_lane, 'Top')
+    midscreen = screengen(friend_lane, bull_lane, 'Mid')
+    botscreen = screengen(friend_lane, bull_lane, 'Bottom')
+    jungscreen = screengen(friend_lane, bull_lane, 'Jungler')
+    for item in [topscreen, midscreen, jungscreen]:
+        item['Jungler'] = jungscreen['General']
+    jungscreen['Top'] = topscreen['General']
+    jungscreen['Danger-levels'] = 'Top: %s, Mid: %s, Bot: %s' % (
+        topscreen['Danger'], midscreen['Danger'], botscreen['Danger'])
+    jungscreen['Mid'] = midscreen['General']
+    jungscreen['Bot'] = botscreen['General']
+    screens = [topscreen, midscreen, botscreen, jungscreen]
+    screen_select(screens)
 
 
 if __name__ == "__main__":
