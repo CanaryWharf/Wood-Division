@@ -133,7 +133,6 @@ def lane(play_info):
                         break
     while remainder:
         print('Unknown Positions')
-        print(remainder)
         for key in rejects:
             print(key)
             nums = len(rejects[key])
@@ -163,9 +162,12 @@ def teams(fams):
 
 def player_info(sid, cid):
     c = {}
-    data = get_data(
-        '%s/api/lol/%s/v1.3/stats/by-summoner/%s/ranked?api_key=%s',
-        (url, region, sid, api_key))
+    try:
+        data = get_data(
+            '%s/api/lol/%s/v1.3/stats/by-summoner/%s/ranked?api_key=%s',
+            (url, region, sid, api_key))
+    except requests.exceptions.HTTPError:
+        return {'Total Scrub': 'Never played Ranked'}
     c = data['champions']
     stats = {}
     for item in c:
@@ -173,12 +175,12 @@ def player_info(sid, cid):
             stats = item['stats']
             break
     if not stats:
-        return ['Cherry Popped']
+        return {'Cherry Popped': 'No ranked games played with Champion'}
     else:
-        return ['%.2f' % (stats['totalChampionKills']/stats['totalDeathsPerSession']),  # NOQA
-            '%.2f' % (stats['totalAssists']/stats['totalSessionsPlayed']),
-            '%.2f' % (stats['totalSessionsWon']/stats['totalSessionsLost']),
-            str(stats['totalSessionsPlayed'])]
+        return {'KDA': '%.2f' % (stats['totalChampionKills']/stats['totalDeathsPerSession']),  # NOQA
+                'Avg Assists': '%.2f' % (stats['totalAssists']/stats['totalSessionsPlayed']),  # NOQA
+                'W/L': '%.2f' % (stats['totalSessionsWon']/stats['totalSessionsLost']),  # NOQA
+                'Played': str(stats['totalSessionsPlayed'])}
 
 
 def counter_rating(friend, bully):
@@ -281,15 +283,38 @@ def screen_select(screens):
         input('Enter to go back:')
 
 
+def find_rating(bullies, b1, lane):
+    for key in b1:
+        if b1[key] == lane:
+            for item in bullies:
+                if item['champ'] == key:
+                    return player_info(item['id'], item['champ_id'])
+
+
 def run():
-    skim = match_data(summoner)
+    print('Looking up game: %s...' % (summoner))
+    if sys.argv[1] == '--test':
+        skim = tester()
+    else:
+        skim = match_data(summoner)
+    print('Sorting teams...')
     friendlies, bullies = teams(skim)
+    print('Sorting lanes...')
     bull_lane = lane(bullies)
     friend_lane = lane(friendlies)
+    print('Top Lane Research...')
     topscreen = screengen(friend_lane, bull_lane, 'Top')
+    topscreen['KDA'] = find_rating(bullies, bull_lane, 'Top')
+    print('Mid lane Research...')
     midscreen = screengen(friend_lane, bull_lane, 'Mid')
+    midscreen['KDA'] = find_rating(bullies, bull_lane, 'Mid')
+    print('Bot Lane Research...')
     botscreen = screengen(friend_lane, bull_lane, 'Bottom')
+    botscreen['KDA'] = find_rating(bullies, bull_lane, 'Bottom')
+    print('Jungle Research...')
     jungscreen = screengen(friend_lane, bull_lane, 'Jungler')
+    jungscreen['KDA'] = find_rating(bullies, bull_lane, 'Jungler')
+    print('Generating Screens...')
     for item in [topscreen, midscreen, jungscreen]:
         item['Jungler'] = jungscreen['General']
     jungscreen['Top'] = topscreen['General']
@@ -298,6 +323,7 @@ def run():
     jungscreen['Mid'] = midscreen['General']
     jungscreen['Bot'] = botscreen['General']
     screens = [topscreen, midscreen, botscreen, jungscreen]
+    print('Done')
     screen_select(screens)
 
 
