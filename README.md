@@ -1,4 +1,4 @@
-# league-tactics
+# Wood Division
 Provides tactical information regarding a game.
 This program is designed to take the mundane task of opposition research and automate it.
 This program will assist in the following ways:
