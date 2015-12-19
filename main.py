@@ -5,6 +5,7 @@ import requests
 import sys
 import os
 import bs4
+import threading
 from pprint import pprint
 config_file = 'config.json'
 if not os.path.isfile(config_file):
@@ -18,6 +19,7 @@ url = config['url']
 global_url = config['global']
 server = config['server']
 region = config['region']
+screendict = {}
 
 
 def tester():
@@ -170,6 +172,7 @@ def player_info(sid, cid):
             (url, region, sid, api_key))
     except requests.exceptions.HTTPError:
         return {'Total Scrub': 'Never played Ranked'}
+        return 0
     c = data['champions']
     stats = {}
     for item in c:
@@ -178,6 +181,7 @@ def player_info(sid, cid):
             break
     if not stats:
         return {'Cherry Popped': 'No ranked games played with Champion'}
+        return 0
     else:
         if stats['totalDeathsPerSession'] == 0:
             stats['totalDeathsPerSession'] = 1
@@ -273,13 +277,14 @@ def screengen(f1, b1, lane):
     screen['General'] = gentips
     if gentips != spectips:
         screen['Special'] = spectips
-    return screen
+    screendict[lane] = screen
 
 
 def screen_select(screens):
     pos = ['Top', 'Mid', 'Bot', 'Jungle']
     print(screens[3]['Danger-levels'])
     while True:
+        os.system('cls' if os.name == 'nt' else 'clear')
         print('Select Screen')
         for x in range(4):
             print('%d: %s' % (x+1, pos[x]))
@@ -289,7 +294,6 @@ def screen_select(screens):
             break
         pprint(screens[ans-1])
         input('Enter to go back:')
-        os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def find_rating(bullies, b1, lane):
@@ -297,7 +301,8 @@ def find_rating(bullies, b1, lane):
         if b1[key] == lane:
             for item in bullies:
                 if item['champ'] == key:
-                    return player_info(item['id'], item['champ_id'])
+                    screendict[lane + ' KDA'] = player_info(item['id'],
+                                                            item['champ_id'])
 
 
 def run():
@@ -308,23 +313,48 @@ def run():
         skim = match_data(summoner)
     print('Sorting teams...')
     friendlies, bullies = teams(skim)
-    print('Sorting lanes...')
     bull_lane = lane(bullies, 'Bully')
     friend_lane = lane(friendlies, 'Friend')
-    print('Top Lane Research...')
-    topscreen = screengen(friend_lane, bull_lane, 'Top')
-    topscreen['KDA'] = find_rating(bullies, bull_lane, 'Top')
-    print('Mid lane Research...')
-    midscreen = screengen(friend_lane, bull_lane, 'Mid')
-    midscreen['KDA'] = find_rating(bullies, bull_lane, 'Mid')
-    print('Bot Lane Research...')
-    botscreen = screengen(friend_lane, bull_lane, 'Bottom')
-    botscreen['KDA'] = find_rating(bullies, bull_lane, 'Bottom')
-    print('Jungle Research...')
-    jungscreen = screengen(friend_lane, bull_lane, 'Jungler')
-    jungscreen['KDA'] = find_rating(bullies, bull_lane, 'Jungler')
+    print('Conducting Research...')
+    topthread1 = threading.Thread(target=screengen,
+                                  args=(friend_lane, bull_lane, 'Top'))
+    topthread1.start()
+    topthread2 = threading.Thread(target=find_rating,
+                                  args=(bullies, bull_lane, 'Top'))
+    topthread2.start()
+    midthread1 = threading.Thread(target=screengen,
+                                  args=(friend_lane, bull_lane, 'Mid'))
+    midthread1.start()
+    midthread2 = threading.Thread(target=find_rating,
+                                  args=(bullies, bull_lane, 'Mid'))
+    midthread2.start()
+    botthread1 = threading.Thread(target=screengen,
+                                  args=(friend_lane, bull_lane, 'Bottom'))
+    botthread1.start()
+    botthread2 = threading.Thread(target=find_rating,
+                                  args=(bullies, bull_lane, 'Bottom'))
+    botthread2.start()
+    jungthread1 = threading.Thread(target=screengen,
+                                   args=(friend_lane, bull_lane, 'Jungler'))
+    jungthread1.start()
+    jungthread2 = threading.Thread(target=find_rating,
+                                   args=(bullies, bull_lane, 'Jungler'))
+    jungthread2.start()
+    for item in [topthread1, topthread2,
+                 midthread1, midthread2,
+                 botthread1, botthread2,
+                 jungthread1, jungthread2]:
+        item.join()
     print('Generating Screens...')
-    for item in [topscreen, midscreen, jungscreen]:
+    topscreen = screendict['Top']
+    topscreen['KDA'] = screendict['Top KDA']
+    midscreen = screendict['Mid']
+    midscreen['KDA'] = screendict['Mid KDA']
+    botscreen = screendict['Bottom']
+    botscreen['KDA'] = screendict['Bottom KDA']
+    jungscreen = screendict['Jungler']
+    jungscreen['KDA'] = screendict['Jungler KDA']
+    for item in [topscreen, midscreen, botscreen]:
         item['Jungler'] = jungscreen['General']
     jungscreen['Top'] = topscreen['General']
     jungscreen['Danger-levels'] = 'Top: %s, Mid: %s, Bot: %s' % (
@@ -333,8 +363,13 @@ def run():
     jungscreen['Bot'] = botscreen['General']
     screens = [topscreen, midscreen, botscreen, jungscreen]
     print('Done')
+    return 0
     screen_select(screens)
 
 
 if __name__ == "__main__":
+    import time
+    t0 = time.time()
     run()
+    t1 = time.time()
+    print(t1-t0)
