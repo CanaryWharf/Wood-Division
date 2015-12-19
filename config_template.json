@@ -1,0 +1,8 @@
+{
+    "summoner": "The Swaginator",
+    "api_key": "Key you got from https://developer.riotgames.com/",
+    "url": "https://euw.api.pvp.net",
+    "server": "EUW1",
+    "region": "euw",
+    "global": "https://global.api.pvp.net"
+}

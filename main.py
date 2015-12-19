@@ -87,6 +87,13 @@ def lane(play_info, team):
     for item in play_info:
         if item['spells'][0] == 'Smite' or item['spells'][1] == 'Smite':  # NOQA
             positions[item['champ']] = 'Jungler'
+            if 'Jungler' not in remainder:
+                for x in positions:
+                    if positions[x] == 'Jungler':
+                        positions[x] = ''
+                        remainder.append('Jungler')
+                        continue
+                continue
             remainder.remove('Jungler')
             continue
         champs.append(item['champ'])
@@ -363,13 +370,8 @@ def run():
     jungscreen['Bot'] = botscreen['General']
     screens = [topscreen, midscreen, botscreen, jungscreen]
     print('Done')
-    return 0
     screen_select(screens)
 
 
 if __name__ == "__main__":
-    import time
-    t0 = time.time()
     run()
-    t1 = time.time()
-    print(t1-t0)
