@@ -50,6 +50,8 @@ def match_data(name):
         '%s/observer-mode/rest/consumer/getSpectatorGameInfo/%s/%s?api_key=%s',
         (url, server, id, api_key))
     fat = dic['participants']
+    if len(fat) != 10:
+        sys.exit('Program currently only supports Summoner\'s rift')
     skim = {}
     for item in fat:
         dic = get_data(
@@ -73,7 +75,7 @@ def match_data(name):
     return skim
 
 
-def lane(play_info):
+def lane(play_info, team):
     posfile = open('champ_pos.json', 'r')
     pos = json.load(posfile)
     posfile.close()
@@ -137,7 +139,7 @@ def lane(play_info):
             print(key)
             nums = len(rejects[key])
             for x in range(nums):
-                print('%d: %s' % (x+1, rejects[key][x]))
+                print('%d: %s (%s)' % (x+1, rejects[key][x], team))
             try:
                 ans = int(input('>'))
                 positions[key] = rejects[key][ans-1]
@@ -177,6 +179,12 @@ def player_info(sid, cid):
     if not stats:
         return {'Cherry Popped': 'No ranked games played with Champion'}
     else:
+        if stats['totalDeathsPerSession'] == 0:
+            stats['totalDeathsPerSession'] = 1
+        if stats['totalSessionsPlayed'] == 0:
+            stats['totalSessionsPlayed'] = 1
+        if stats['totalSessionsLost'] == 0:
+            stats['totalSessionsLost'] = 1
         return {'KDA': '%.2f' % (stats['totalChampionKills']/stats['totalDeathsPerSession']),  # NOQA
                 'Avg Assists': '%.2f' % (stats['totalAssists']/stats['totalSessionsPlayed']),  # NOQA
                 'W/L': '%.2f' % (stats['totalSessionsWon']/stats['totalSessionsLost']),  # NOQA
@@ -257,7 +265,7 @@ def lane_match(friends, bullies, lane):
     return f1, b1
 
 
-def screengen(f1, b1, lane):
+def screengen(f1, b1, lane, q):
     screen = {}
     f2, b2 = lane_match(f1, b1, lane)
     dang, gentips, spectips = matchup(f2, b2)
@@ -269,9 +277,9 @@ def screengen(f1, b1, lane):
 
 
 def screen_select(screens):
-    end = False
     pos = ['Top', 'Mid', 'Bot', 'Jungle']
-    while not end:
+    print(screens[3]['Danger-levels'])
+    while True:
         print('Select Screen')
         for x in range(4):
             print('%d: %s' % (x+1, pos[x]))
@@ -281,6 +289,7 @@ def screen_select(screens):
             break
         pprint(screens[ans-1])
         input('Enter to go back:')
+        os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def find_rating(bullies, b1, lane):
@@ -293,15 +302,15 @@ def find_rating(bullies, b1, lane):
 
 def run():
     print('Looking up game: %s...' % (summoner))
-    if sys.argv[1] == '--test':
+    if len(sys.argv) > 1:
         skim = tester()
     else:
         skim = match_data(summoner)
     print('Sorting teams...')
     friendlies, bullies = teams(skim)
     print('Sorting lanes...')
-    bull_lane = lane(bullies)
-    friend_lane = lane(friendlies)
+    bull_lane = lane(bullies, 'Bully')
+    friend_lane = lane(friendlies, 'Friend')
     print('Top Lane Research...')
     topscreen = screengen(friend_lane, bull_lane, 'Top')
     topscreen['KDA'] = find_rating(bullies, bull_lane, 'Top')
