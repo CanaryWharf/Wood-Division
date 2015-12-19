@@ -265,7 +265,7 @@ def lane_match(friends, bullies, lane):
     return f1, b1
 
 
-def screengen(f1, b1, lane, q):
+def screengen(f1, b1, lane):
     screen = {}
     f2, b2 = lane_match(f1, b1, lane)
     dang, gentips, spectips = matchup(f2, b2)
