@@ -43,14 +43,21 @@ def get_soup(stuff, argtings):
 
 
 def match_data(name):
-    dic = get_data(
-        '%s/api/lol/euw/v1.4/summoner/by-name/%s?api_key=%s', (url,
-                                                               name,
-                                                               api_key))
-    id = dic[name.lower()]['id']
-    dic = get_data(
-        '%s/observer-mode/rest/consumer/getSpectatorGameInfo/%s/%s?api_key=%s',
-        (url, server, id, api_key))
+    try:
+        dic = get_data(
+            '%s/api/lol/euw/v1.4/summoner/by-name/%s?api_key=%s', (url,
+                                                                   name,
+                                                                   api_key))
+    except requests.exceptions.HTTPError:
+        sys.exit('Name not found')
+    print(dic)
+    id = dic[list(dic.keys())[0]]['id']
+    try:
+        dic = get_data(
+            '%s/observer-mode/rest/consumer/getSpectatorGameInfo/%s/%s?api_key=%s',  # NOQA
+            (url, server, id, api_key))
+    except requests.exceptions.HTTPError:
+        sys.exit('Game not found. Is player in a game?')
     fat = dic['participants']
     if len(fat) != 10:
         sys.exit('Program currently only supports Summoner\'s rift')
@@ -92,8 +99,7 @@ def lane(play_info, team):
                     if positions[x] == 'Jungler':
                         positions[x] = ''
                         remainder.append('Jungler')
-                        continue
-                continue
+                        remainder.append('Jungler')
             remainder.remove('Jungler')
             continue
         champs.append(item['champ'])
@@ -368,10 +374,8 @@ def run():
         topscreen['Danger'], midscreen['Danger'], botscreen['Danger'])
     jungscreen['Mid'] = midscreen['General']
     jungscreen['Bot'] = botscreen['General']
-    screens = [topscreen, midscreen, botscreen, jungscreen]
-    print('Done')
-    screen_select(screens)
+    return [topscreen, midscreen, botscreen, jungscreen]
 
 
 if __name__ == "__main__":
-    run()
+    screen_select(run())
