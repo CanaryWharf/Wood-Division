@@ -1,12 +1,11 @@
 # Main project
 
-import json
+import simplejson as json
 import requests
 import sys
 import os
 import bs4
 import threading
-from pprint import pprint
 config_file = 'config.json'
 if not os.path.isfile(config_file):
     sys.exit('No config File')
@@ -251,15 +250,15 @@ def matchup(friend, bully):
                                counter_rating(friend[0], bully[1]),
                                counter_rating(friend[1], bully[0]),
                                counter_rating(friend[1], bully[1])]) / 4)]
-        tips = [counter_tips(friend[0], bully[0]),
-                counter_tips(friend[0], bully[1]),
-                counter_tips(friend[1], bully[0]),
-                counter_tips(friend[1], bully[1])]
+        tips = [{friend[0]: {bully[0]: counter_tips(friend[0], bully[0]),
+                             bully[1]: counter_tips(friend[0], bully[1])}},
+                {friend[1]: {bully[0]: counter_tips(friend[1], bully[0]),
+                             bully[1]: counter_tips(friend[1], bully[1])}}]
         gentips = []
         spectips = []
         for item in tips:
-            gentips.append(item[0])
-            spectips.append(item[1])
+            gentips.append(item)
+            spectips.append(item)
     else:
         Dang = levels[counter_rating(friend[0], bully[0])]
         gentips, spectips = counter_tips(friend[0], bully[0])
@@ -291,6 +290,7 @@ def screengen(f1, b1, lane):
     if gentips != spectips:
         screen['Special'] = spectips
     screendict[lane] = screen
+    print('%s research complete.' % (lane))
 
 
 def screen_select(screens):
@@ -305,7 +305,7 @@ def screen_select(screens):
         ans = int(input('>'))
         if ans == 5:
             break
-        pprint(screens[ans-1])
+        # pprint(screens[ans-1])
         input('Enter to go back:')
 
 
@@ -318,9 +318,9 @@ def find_rating(bullies, b1, lane):
                                                             item['champ_id'])
 
 
-def run():
+def run(test=True):
     print('Looking up game: %s...' % (summoner))
-    if len(sys.argv) > 1:
+    if test:
         skim = tester()
     else:
         skim = match_data(summoner)
@@ -373,9 +373,18 @@ def run():
     jungscreen['Danger-levels'] = 'Top: %s, Mid: %s, Bot: %s' % (
         topscreen['Danger'], midscreen['Danger'], botscreen['Danger'])
     jungscreen['Mid'] = midscreen['General']
-    jungscreen['Bot'] = botscreen['General']
+    jungscreen['Bottom'] = {}
+    for item in botscreen['General']:
+        for f in item.keys():
+            for key in item[f].keys():
+                jungscreen['Bottom'][key] = item[f][key][0]
+    print('Complete')
     return [topscreen, midscreen, botscreen, jungscreen]
 
 
 if __name__ == "__main__":
-    screen_select(run())
+    if len(sys.argv) > 1:
+        test = True
+    else:
+        test = False
+    screen_select(run(test))

@@ -1,0 +1,51 @@
+<Screener>:
+    MainScreen:
+    InfoScreen:
+<LaneScreen>:
+    ScrollView:
+<InfoScreen>:
+    name:'info_screen'
+    InfoMenu:
+
+<InfoMenu>:
+    orientation: 'vertical'
+    Button:
+        id: top_button
+        text: 'Top'
+        on_release: root.show_info(0)
+    Button:
+        id: mid_button
+        text: 'Mid'
+        on_release: root.show_info(1)
+    Button:
+        id: bot_button
+        text: 'Bottom'
+        on_release: root.show_info(2)
+    Button:
+        id: jung_button
+        text: 'Jungler'
+        on_release: root.show_info(3)
+    Button:
+        text: 'Go Back'
+        on_release: app.root.current = 'main_screen'
+<InfoBlock>:
+    size_hint_y: None
+    text_size: self.width, None
+    height: self.texture_size[1]
+
+<MainScreen>:
+    name: 'main_screen'
+    MainMenu:
+<MainMenu>:
+    orientation: 'horizontal'
+    Button:
+        id: run_button
+        text: 'Run Program'
+        on_release: root.gendata(); app.root.current = 'info_screen'
+<Popting>:
+    size_hint: 0.8, 0.8
+<LaneInfo>:
+    cols: 2
+    spacing: 40, 40
+    size_hint_x: 1
+    size_hint_y: None
