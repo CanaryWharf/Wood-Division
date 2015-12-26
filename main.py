@@ -10,6 +10,8 @@ from kivy.uix.popup import Popup
 from kivy.properties import ObjectProperty
 from kivy.properties import ListProperty  # NOQA
 from kivy.properties import NumericProperty  # NOQA
+from kivy.uix.image import Image
+import os
 import simplejson as json
 import backend  # NOQA
 
@@ -27,13 +29,36 @@ class InfoMenu(BoxLayout):
         super(InfoMenu, self).__init__(**kwargs)
 
     def show_info(self, lane):
+        lanes = ['Top', 'Mid', 'Bottom', 'Jungler']
         grid = LaneInfo(lane)
         grid.list_data()
         grid.bind(minimum_height=grid.setter('height'))
         gridroot = ScrollView()
+        gridbox = BoxLayout(orientation='vertical',
+                            padding=[10, 10, 10, 10])
+        img = os.path.join('images', grid.champ + '.png')
+        gridbox.add_widget(Portrait(source=img))
+        gridbox.add_widget(gridroot)
+        gridbox.add_widget(Close(lanes[lane]))
         gridroot.add_widget(grid)
-        self.pop = Popting(title='Play Info', content=gridroot)
-        self.pop.open()
+        gridscreen = Screen(name=lanes[lane])
+        gridscreen.add_widget(gridbox)
+        App.get_running_app().root.add_widget(gridscreen)
+        App.get_running_app().root.current = lanes[lane]
+
+
+class Portrait(Image):
+    pass
+
+
+class Close(Button):
+    lane = None
+
+    def __init__(self, lane, **kwargs):
+        super(Close, self).__init__(**kwargs)
+
+    def on_release(self):
+        App.get_running_app().root.current = 'info_screen'
 
 
 class InfoScreen(Screen):
@@ -47,6 +72,7 @@ class InfoBlock(Label):
 class LaneInfo(GridLayout):
     info = None
     lane = None
+    champ = None
 
     def __init__(self, lane, **kwargs):
         super(LaneInfo, self).__init__(**kwargs)
@@ -55,9 +81,24 @@ class LaneInfo(GridLayout):
     def list_data(self):
         global infoscreens
         self.info = infoscreens[self.lane]
+        self.champ = self.info['Bully']
         for key in self.info.keys():
+            if key == 'Bully':
+                continue
             self.add_widget(InfoBlock(text=key))
-            self.add_widget(InfoBlock(text=json.dumps(self.info[key])))
+            self.add_widget(InfoBlock(text=self.famting(self.info[key])))
+
+    def famting(self, datum):
+        if isinstance(datum, (str, int, float)):
+            return datum
+        elif isinstance(datum, dict):
+            block = []
+            for key in datum:
+                block.append('%s: %s' % (key, self.famting(datum[key])))
+                block.append('\n')
+            return '\n'.join(block)
+        else:
+            return '\n'.join(self.famting(x) for x in datum)
 
 
 class MainMenu(BoxLayout):
@@ -81,7 +122,8 @@ class Screener(ScreenManager):
 
 class WoodApp(App):
     def build(self):
-        return Screener()
+        s = Screener()
+        return s
 
 
 if __name__ == "__main__":

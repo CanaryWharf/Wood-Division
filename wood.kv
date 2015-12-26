@@ -6,13 +6,14 @@
 <InfoScreen>:
     name:'info_screen'
     InfoMenu:
-
+<Portrait>:
+    size_hint_y: None
 <InfoMenu>:
     orientation: 'vertical'
     Button:
         id: top_button
         text: 'Top'
-        on_release: root.show_info(0)
+        on_release: root.show_info(0);
     Button:
         id: mid_button
         text: 'Mid'
@@ -32,6 +33,12 @@
     size_hint_y: None
     text_size: self.width, None
     height: self.texture_size[1]
+    valign: 'top'
+
+<Close>:
+    text: 'Back'
+    size_hint_y: None
+    height: "40dp"
 
 <MainScreen>:
     name: 'main_screen'

@@ -285,8 +285,12 @@ def screengen(f1, b1, lane):
     screen = {}
     f2, b2 = lane_match(f1, b1, lane)
     dang, gentips, spectips = matchup(f2, b2)
+    screen['Bully'] = b2[0]
     screen['Danger'] = dang
-    screen['General'] = gentips
+    if lane == 'Jungler':
+        screen['Jungler'] = gentips
+    else:
+        screen['General'] = gentips
     if gentips != spectips:
         screen['Special'] = spectips
     screendict[lane] = screen
@@ -368,10 +372,14 @@ def run(test=True):
     jungscreen = screendict['Jungler']
     jungscreen['KDA'] = screendict['Jungler KDA']
     for item in [topscreen, midscreen, botscreen]:
-        item['Jungler'] = jungscreen['General']
+        item['Jungler'] = jungscreen['Jungler']
     jungscreen['Top'] = topscreen['General']
-    jungscreen['Danger-levels'] = 'Top: %s, Mid: %s, Bot: %s' % (
-        topscreen['Danger'], midscreen['Danger'], botscreen['Danger'])
+    jungscreen['Danger-levels'] = 'Top: %s, Mid: %s, Bot: %s, Jungle: %s' % (
+        topscreen['Danger'],
+        midscreen['Danger'],
+        botscreen['Danger'],
+        jungscreen['Danger'])
+    jungscreen.pop('Danger')
     jungscreen['Mid'] = midscreen['General']
     jungscreen['Bottom'] = {}
     for item in botscreen['General']:
