@@ -32,29 +32,31 @@ class InfoMenu(BoxLayout):
         super(InfoMenu, self).__init__(**kwargs)
 
     def show_info(self, lane):
+        print(App.get_running_app().root.screen_names)
         lanes = ['Top', 'Mid', 'Bottom', 'Jungler']
-        grid = LaneInfo(lane)
-        grid.list_data()
-        grid.bind(minimum_height=grid.setter('height'))
-        gridroot = ScrollView()
-        gridbox = BoxLayout(orientation='vertical',
-                            padding=[10, 10, 10, 10])
-        if lane == 2:
-            nubox = BoxLayout(size_hint_y=None)
-            img1 = os.path.join('images', grid.champ[0] + '.png')
-            img2 = os.path.join('images', grid.champ[1] + '.png')
-            nubox.add_widget(Portrait(source=img1))
-            nubox.add_widget(Portrait(source=img2))
-            gridbox.add_widget(nubox)
-        else:
-            img = os.path.join('images', grid.champ + '.png')
-            gridbox.add_widget(Portrait(source=img))
-        gridbox.add_widget(gridroot)
-        gridbox.add_widget(Close(lanes[lane]))
-        gridroot.add_widget(grid)
-        gridscreen = Screen(name=lanes[lane])
-        gridscreen.add_widget(gridbox)
-        App.get_running_app().root.add_widget(gridscreen)
+        if lanes[lane] not in App.get_running_app().root.screen_names:
+            grid = LaneInfo(lane)
+            grid.list_data()
+            grid.bind(minimum_height=grid.setter('height'))
+            gridroot = ScrollView()
+            gridbox = BoxLayout(orientation='vertical',
+                                padding=[10, 10, 10, 10])
+            if lane == 2:
+                nubox = BoxLayout(size_hint_y=None)
+                img1 = os.path.join('images', grid.champ[0] + '.png')
+                img2 = os.path.join('images', grid.champ[1] + '.png')
+                nubox.add_widget(Portrait(source=img1))
+                nubox.add_widget(Portrait(source=img2))
+                gridbox.add_widget(nubox)
+            else:
+                img = os.path.join('images', grid.champ + '.png')
+                gridbox.add_widget(Portrait(source=img))
+            gridbox.add_widget(gridroot)
+            gridbox.add_widget(Close(lanes[lane]))
+            gridroot.add_widget(grid)
+            gridscreen = Screen(name=lanes[lane])
+            gridscreen.add_widget(gridbox)
+            App.get_running_app().root.add_widget(gridscreen)
         App.get_running_app().root.current = lanes[lane]
 
 

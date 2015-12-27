@@ -18,6 +18,7 @@ url = config['url']
 global_url = config['global']
 server = config['server']
 region = config['region']
+sum_id = config['id']
 screendict = {}
 
 
@@ -176,6 +177,26 @@ def teams(fams):
     return friend, bully
 
 
+def player_rank(sid):
+    c = {}
+    try:
+        data = get_data(
+            '%s/api/lol/%s/v2.5/league/by-summoner/%s/entry?api_key=%s',
+            (url, region, sid, api_key))
+    except requests.exceptions.HTTPError:
+        return {'Total Scrub': 'Never played ranked'}
+    for item in data[list(data.keys())[0]]:
+        if item["queue"] == "RANKED_SOLO_5x5":
+            c = item
+            break
+    if not c:
+        return {'No Solo Queue data found': 'Player has not been placed'}
+    stats = {'League': c['tier'] + ' ' + c['entries'][0]['division'],
+             'Wins': c['entries'][0]['wins'],
+             'Losses': c['entries'][0]['losses']}
+    return stats
+
+
 def player_info(sid, cid):
     c = {}
     try:
@@ -312,7 +333,6 @@ def screen_select(screens):
         ans = int(input('>'))
         if ans == 5:
             break
-        # pprint(screens[ans-1])
         input('Enter to go back:')
 
 
@@ -321,8 +341,12 @@ def find_rating(bullies, b1, lane):
         if b1[key] == lane:
             for item in bullies:
                 if item['champ'] == key:
-                    screendict[lane + ' KDA'] = player_info(item['id'],
-                                                            item['champ_id'])
+                    if lane == 'Bottom':
+                        if 'Bottom KDA' not in screendict:
+                            screendict['Bottom KDA'] = {}
+                        screendict['Bottom KDA'][key] = player_rank(item['id'])
+                    else:
+                        screendict[lane + ' KDA'] = player_rank(item['id'])
 
 
 def run(test=True):
@@ -342,28 +366,28 @@ def run(test=True):
     topthread2 = threading.Thread(target=find_rating,
                                   args=(bullies, bull_lane, 'Top'))
     topthread2.start()
-    midthread1 = threading.Thread(target=screengen,
+    midthread3 = threading.Thread(target=screengen,
                                   args=(friend_lane, bull_lane, 'Mid'))
-    midthread1.start()
-    midthread2 = threading.Thread(target=find_rating,
+    midthread3.start()
+    midthread4 = threading.Thread(target=find_rating,
                                   args=(bullies, bull_lane, 'Mid'))
-    midthread2.start()
-    botthread1 = threading.Thread(target=screengen,
+    midthread4.start()
+    botthread5 = threading.Thread(target=screengen,
                                   args=(friend_lane, bull_lane, 'Bottom'))
-    botthread1.start()
-    botthread2 = threading.Thread(target=find_rating,
+    botthread5.start()
+    botthread6 = threading.Thread(target=find_rating,
                                   args=(bullies, bull_lane, 'Bottom'))
-    botthread2.start()
-    jungthread1 = threading.Thread(target=screengen,
+    botthread6.start()
+    jungthread7 = threading.Thread(target=screengen,
                                    args=(friend_lane, bull_lane, 'Jungler'))
-    jungthread1.start()
-    jungthread2 = threading.Thread(target=find_rating,
+    jungthread7.start()
+    jungthread8 = threading.Thread(target=find_rating,
                                    args=(bullies, bull_lane, 'Jungler'))
-    jungthread2.start()
+    jungthread8.start()
     for item in [topthread1, topthread2,
-                 midthread1, midthread2,
-                 botthread1, botthread2,
-                 jungthread1, jungthread2]:
+                 midthread3, midthread4,
+                 botthread5, botthread6,
+                 jungthread7, jungthread8]:
         item.join()
     print('Generating Screens...')
     topscreen = screendict['Top']
@@ -377,7 +401,7 @@ def run(test=True):
     for item in [topscreen, midscreen, botscreen]:
         item['Jungler'] = jungscreen['Jungler']
     jungscreen['Top'] = topscreen['General']
-    jungscreen['Danger-levels'] = 'Top: %s\tMid: %s\tBot: %s\tJungle: %s' % (
+    jungscreen['Danger-levels'] = 'Top: %s, Mid: %s, Bot: %s, Jungle: %s' % (
         topscreen['Danger'],
         midscreen['Danger'],
         botscreen['Danger'],
