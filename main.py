@@ -12,13 +12,16 @@ from kivy.properties import ListProperty  # NOQA
 from kivy.properties import NumericProperty  # NOQA
 from kivy.uix.image import Image
 import os
-import simplejson as json
 import backend  # NOQA
 
 infoscreens = []
 
 
 class Popting(Popup):
+    pass
+
+
+class InfoTitle(Label):
     pass
 
 
@@ -36,8 +39,16 @@ class InfoMenu(BoxLayout):
         gridroot = ScrollView()
         gridbox = BoxLayout(orientation='vertical',
                             padding=[10, 10, 10, 10])
-        img = os.path.join('images', grid.champ + '.png')
-        gridbox.add_widget(Portrait(source=img))
+        if lane == 2:
+            nubox = BoxLayout(size_hint_y=None)
+            img1 = os.path.join('images', grid.champ[0] + '.png')
+            img2 = os.path.join('images', grid.champ[1] + '.png')
+            nubox.add_widget(Portrait(source=img1))
+            nubox.add_widget(Portrait(source=img2))
+            gridbox.add_widget(nubox)
+        else:
+            img = os.path.join('images', grid.champ + '.png')
+            gridbox.add_widget(Portrait(source=img))
         gridbox.add_widget(gridroot)
         gridbox.add_widget(Close(lanes[lane]))
         gridroot.add_widget(grid)
@@ -85,7 +96,7 @@ class LaneInfo(GridLayout):
         for key in self.info.keys():
             if key == 'Bully':
                 continue
-            self.add_widget(InfoBlock(text=key))
+            self.add_widget(InfoTitle(text=key))
             self.add_widget(InfoBlock(text=self.famting(self.info[key])))
 
     def famting(self, datum):
@@ -108,7 +119,6 @@ class MainMenu(BoxLayout):
 
     def gendata(self):
         global infoscreens
-        self.ids['run_button'].text = 'Processing...\nPlease wait'
         infoscreens = backend.run(test=True)
 
 

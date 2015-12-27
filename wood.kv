@@ -33,7 +33,14 @@
     size_hint_y: None
     text_size: self.width, None
     height: self.texture_size[1]
+    font_size: '20sp'
+<InfoTitle>:
+    size_hint_y: None
+    text_size: self.width, None
+    height: self.texture_size[1]
+    font_size: '20sp'
     valign: 'top'
+    halign: 'right'
 
 <Close>:
     text: 'Back'
@@ -44,11 +51,17 @@
     name: 'main_screen'
     MainMenu:
 <MainMenu>:
-    orientation: 'horizontal'
+    orientation: 'vertical'
+    Label:
+        text: 'Wood Division'
+        font_size: '100sp'
     Button:
         id: run_button
-        text: 'Run Program'
+        text: 'Google my shit for me'
+        font_size: '50sp'
         on_release: root.gendata(); app.root.current = 'info_screen'
+    Label:
+        text: 'Pre-Pre-Alpha. Will crash whenever it bloody feels like it'
 <Popting>:
     size_hint: 0.8, 0.8
 <LaneInfo>:
