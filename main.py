@@ -121,7 +121,7 @@ class MainMenu(BoxLayout):
 
     def gendata(self):
         global infoscreens
-        infoscreens = backend.run(test=False)
+        infoscreens = backend.run(test=True)
 
 
 class MainScreen(Screen):
