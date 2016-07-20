@@ -8,6 +8,7 @@ filename.close()
 
 
 def get_data(url, argtings):
+    """Retrieves data from url using selected arguments"""
     response = requests.get(url % argtings)
     response.raise_for_status()
     try:
@@ -17,6 +18,7 @@ def get_data(url, argtings):
 
 
 def get_match(test=True):
+    """Retrieves current match data. If test, it will use testdata"""
     if not test:
         data = get_data('%s/observer-mode/rest/consumer/getSpectatorGameInfo/%s/%s?api_key=%s',  # NOQA
                         (config['url'],
@@ -44,6 +46,7 @@ def get_match(test=True):
 
 
 def get_league(summoners):
+    """retrieves Division information for players. Accepts up to 10 players"""
     data = get_data('%s/api/lol/%s/v2.5/league/by-summoner/%s/entry?api_key=%s',  # NOQA
                     (config['url'],
                      config['region'],
@@ -58,7 +61,8 @@ def get_league(summoners):
     return output
 
 
-def get_mastery(summoner, champ):
+def get_champ_mastery(summoner, champ):
+    """retrieves champion mastery informatiion"""
     data = get_data('%s/championmastery/location/%s/player/%d/champion/%d?api_key=%s',  # NOQA
                     (config['url'],
                      config['platform'],
@@ -69,6 +73,7 @@ def get_mastery(summoner, champ):
 
 
 def get_champ(champ_id):
+    """retrieves static champion data"""
     data = get_data('%s/api/lol/static-data/%s/v1.2/champion/%d?api_key=%s',
                     (config['global'],
                      config['region'],
@@ -76,4 +81,32 @@ def get_champ(champ_id):
                      config['api_key']))
     return data
 
-pprint(get_champ(103))
+
+def get_masteries(mid):
+    """retrieve static mastery data"""
+    data = get_data('%s/api/lol/static-data/%s/v1.2/mastery/%d?api_key=%s',
+                    (config['global'],
+                     config['region'],
+                     mid,
+                     config['api_key']))
+    return data
+
+
+def get_runes(rid):
+    """retrieve static rune data"""
+    data = get_data('%s/api/lol/static-data/%s/v1.2/rune/%d?api_key=%s',
+                    (config['global'],
+                     config['region'],
+                     rid,
+                     config['api_key']))
+    return data
+
+
+def get_spells(sid):
+    """retrieve static spell data"""
+    data = get_data('%s/api/lol/static-data/%s/v1.2/summoner-spell/%d?api_key=%s',  # NOQA
+                    (config['global'],
+                     config['region'],
+                     sid,
+                     config['api_key']))
+    return data
