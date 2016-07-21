@@ -9,22 +9,24 @@
 <ConfigScreen>:
     name: 'config_screen'
     ConfigMenu:
+<InfoScreen>:
+    name: 'info_screen'
 <StandardLabel>:
     valign: 'middle'
     halign: 'right'
     font_size: 25
 <MainMenu>:
     orientation: 'vertical'
-    Label:
+    StandardLabel:
         text: 'Wood Division'
-    Label:
+    StandardLabel:
         text: 'Pre-Pre-Alpha'
     Button:
         text: 'Configuration'
         on_release: app.root.current = 'config_screen'
     Button:
         text: 'Launch (Also coming soon)'
-        on_release: root.pop.open()
+        on_release: root.lookup()
 <Popting>:
     size_hint: 0.7, 0.7
     title: 'Oops, something went wrong'
@@ -43,8 +45,12 @@
         text: 'Yolo'
     StandardLabel:
         text: 'Summoner'
-    StandardLabel:
+    TextInput:
+        id: n_box
         text: root.name
+        font_size: 25
+        halign: 'center'
+        valign: 'middle'
     StandardLabel:
         text: 'Region'
     Button:
@@ -52,8 +58,24 @@
         valign: 'middle'
         haligh: 'center'
         font_size: 25
+        on_release: root.pop.open()
     Button:
         text: 'Back'
         on_release: app.root.current = 'main_screen'
     Button:
         text: 'save'
+        on_release: root.set_name(n_box)
+<RegionPopup>:
+    id: rgnp
+    size_hint: 0.7, 0.7
+<ErrorPopup>:
+    size_hint: 0.7, 0.7
+    title: 'Oops, something went wrong'
+    Label:
+        text: 'Please try again'
+        text_size: root.width, None
+        size: self.texture_size
+        valign: 'middle'
+        halign: 'center'
+        font_size: 25
+

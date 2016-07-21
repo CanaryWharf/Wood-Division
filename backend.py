@@ -21,29 +21,34 @@ endpoints = {
 
 
 def change_name(new_name, region):
-    sumdata = get_data('%s/api/lol/%s/v1.4/summoner/by-name/%s',
-                       (config['global'],
+    global config
+    sumdata = get_data('%s/api/lol/%s/v1.4/summoner/by-name/%s?api_key=%s',
+                       ('https://%s.api.pvp.net' % region.lower(),
                         region.lower(),
-                        new_name))
+                        new_name,
+                        config['api_key']))
     if not sumdata:
         return False
-    filename = open('config.json', 'r+')
+    filename = open('config.json', 'r')
     con = json.load(filename)
+    filename.close()
     con['summoner'] = new_name
     con['region'] = region.lower()
-    con['platform'] = endpoints['region']
+    con['platform'] = endpoints[region]
     con['url'] = 'https://%s.api.pvp.net' % region.lower()
     con['id'] = sumdata[
         ''.join(c.lower() for c in new_name if not c.isspace())]['id']
-    json.dump(con, filename)
-    filename.locse()
+    filename = open('config.json', 'w+')
+    filename.write(json.dumps(con))
+    filename.close()
+    config = con
     return True
 
 
 def get_data(url, argtings):
     """Retrieves data from url using selected arguments"""
     response = requests.get(url % argtings)
-    if response.status_code == 404:
+    if response.status_code == 404 or response.status_code == 403:
         return None
     try:
         return json.loads(response.text)
@@ -67,7 +72,6 @@ def get_match(test=True):
         return None
     friendly = None
     for item in data['participants']:
-        print(item['summonerId'])
         if item['summonerId'] == config['id']:
             friendly = item['teamId']
             break
@@ -86,7 +90,7 @@ def get_league(summoners):
     data = get_data('%s/api/lol/%s/v2.5/league/by-summoner/%s/entry?api_key=%s',  # NOQA
                     (config['url'],
                      config['region'],
-                     ','.join(summoners),
+                     ','.join(map(str, summoners)),
                      config['api_key']))
     output = {}
     for key in data.keys():
