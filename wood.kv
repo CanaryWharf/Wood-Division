@@ -1,0 +1,59 @@
+<Screener>:
+    MainScreen:
+    InfoScreen:
+    MoreInfoScreen:
+    ConfigScreen:
+<MainScreen>:
+    name: 'main_screen'
+    MainMenu:
+<ConfigScreen>:
+    name: 'config_screen'
+    ConfigMenu:
+<StandardLabel>:
+    valign: 'middle'
+    halign: 'right'
+    font_size: 25
+<MainMenu>:
+    orientation: 'vertical'
+    Label:
+        text: 'Wood Division'
+    Label:
+        text: 'Pre-Pre-Alpha'
+    Button:
+        text: 'Configuration'
+        on_release: app.root.current = 'config_screen'
+    Button:
+        text: 'Launch (Also coming soon)'
+        on_release: root.pop.open()
+<Popting>:
+    size_hint: 0.7, 0.7
+    title: 'Oops, something went wrong'
+    Label:
+        text: 'Are you sure you are in a game?'
+        text_size: root.width, None
+        size: self.texture_size
+        valign: 'middle'
+        halign: 'center'
+        font_size: 25
+<ConfigMenu>:
+    cols: 2
+    StandardLabel:
+        text: 'Config'
+    StandardLabel:
+        text: 'Yolo'
+    StandardLabel:
+        text: 'Summoner'
+    StandardLabel:
+        text: root.name
+    StandardLabel:
+        text: 'Region'
+    Button:
+        text: root.region
+        valign: 'middle'
+        haligh: 'center'
+        font_size: 25
+    Button:
+        text: 'Back'
+        on_release: app.root.current = 'main_screen'
+    Button:
+        text: 'save'

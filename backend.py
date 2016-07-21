@@ -1,16 +1,50 @@
 import simplejson as json
 import requests
-from pprint import pprint
 
 filename = open('config.json')
 config = json.load(filename)
 filename.close()
+endpoints = {
+    'BR': 'BR1',
+    'EUNE': 'EUN1',
+    'EUW': 'EUW1',
+    'JP': 'JP1',
+    'KR': 'KR',
+    'LAN': 'LA1',
+    'LAS': 'LA2',
+    'NA': 'NA1',
+    'OCE': 'OC1',
+    'TR': 'TR1',
+    'RU': 'RU',
+    'PBE': 'PBE1'
+}
+
+
+def change_name(new_name, region):
+    sumdata = get_data('%s/api/lol/%s/v1.4/summoner/by-name/%s',
+                       (config['global'],
+                        region.lower(),
+                        new_name))
+    if not sumdata:
+        return False
+    filename = open('config.json', 'r+')
+    con = json.load(filename)
+    con['summoner'] = new_name
+    con['region'] = region.lower()
+    con['platform'] = endpoints['region']
+    con['url'] = 'https://%s.api.pvp.net' % region.lower()
+    con['id'] = sumdata[
+        ''.join(c.lower() for c in new_name if not c.isspace())]['id']
+    json.dump(con, filename)
+    filename.locse()
+    return True
 
 
 def get_data(url, argtings):
     """Retrieves data from url using selected arguments"""
     response = requests.get(url % argtings)
-    response.raise_for_status()
+    if response.status_code == 404:
+        return None
     try:
         return json.loads(response.text)
     except json.scanner.JSONDecodeError:
@@ -29,6 +63,8 @@ def get_match(test=True):
         filename = open('raw_testdata.json')
         data = json.load(filename)
         filename.close()
+    if data is None:
+        return None
     friendly = None
     for item in data['participants']:
         print(item['summonerId'])
