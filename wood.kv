@@ -11,6 +11,9 @@
     ConfigMenu:
 <InfoScreen>:
     name: 'info_screen'
+    InfoMenu:
+<InfoMenu>:
+    direction: 'right'
 <StandardLabel>:
     valign: 'middle'
     halign: 'right'
@@ -20,13 +23,17 @@
     StandardLabel:
         text: 'Wood Division'
     StandardLabel:
-        text: 'Pre-Pre-Alpha'
+        text: 'When you need to know who to blame'
     Button:
         text: 'Configuration'
-        on_release: app.root.current = 'config_screen'
+        on_release:
+            root.reset_transition()
+            app.root.current = 'config_screen'
     Button:
         text: 'Launch (Also coming soon)'
         on_release: root.lookup()
+    StandardLabel:
+        text: 'Pre-Alpha'
 <Popting>:
     size_hint: 0.7, 0.7
     title: 'Oops, something went wrong'
@@ -61,7 +68,7 @@
         on_release: root.pop.open()
     Button:
         text: 'Back'
-        on_release: app.root.current = 'main_screen'
+        on_release: root.back_to_main()
     Button:
         text: 'save'
         on_release: root.set_name(n_box)
