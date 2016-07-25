@@ -11,6 +11,8 @@ from kivy.properties import StringProperty
 from kivy.properties import ListProperty
 from kivy.uix.carousel import Carousel
 from kivy.uix.image import AsyncImage
+from kivy.uix.pagelayout import PageLayout
+from kivy.uix.behaviors import ButtonBehavior
 import queue
 import threading
 import simplejson as json
@@ -34,6 +36,25 @@ class RegionPopup(Popup):
     pass
 
 
+class nuBox(ButtonBehavior, BoxLayout):
+    pass
+
+
+class MoreInfo(PageLayout):
+
+    def __init__(self, info, **kwargs):
+        super(MoreInfo, self).__init__(**kwargs)
+
+    def master_page(self, sid, cid):
+        pass
+
+    def rune_page(self, runelist):
+        pass
+
+    def masteries_page(self, masterylist):
+        pass
+
+
 class InfoMenu(Carousel):
 
     def __init__(self, bully, friend, **kwargs):
@@ -44,12 +65,14 @@ class InfoMenu(Carousel):
 
     def get_layout(self, roster, team):
         b = BoxLayout(orientation='vertical')
-        b.add_widget(StandardLabel(text=team))
+        b.add_widget(StandardLabel(text=team, size_hint=(1, 0.2)))
         for item in roster:
-            entry = BoxLayout(orientation='horizontal')
+            entry = nuBox(orientation='horizontal',
+                          padding=[1, 5],
+                          size_hint=(1, 0.6))
             entry.add_widget(AsyncImage(
-                source='http://ddragon.leagueoflegends.com/cdn/5.2.1/img/champion/%s.png' % item['champ']['key']))  # NOQA
-            labels = BoxLayout(orientation='vertical')
+                source='http://ddragon.leagueoflegends.com/cdn/5.2.1/img/champion/%s.png' % item['champ']['key'], size_hint=(0.2, 1)))  # NOQA
+            labels = BoxLayout(orientation='vertical', size_hint=(0.6, 1))
             if 'division' in item.keys():
                 labels.add_widget(StandardLabel(text=item['division']))
                 w, l = item['wins'], item['losses']
@@ -62,16 +85,26 @@ class InfoMenu(Carousel):
             else:
                 labels.add_widget(StandardLabel(text='Scrub'))
             entry.add_widget(labels)
+            entry.memory = item
+            entry.bind(on_press=self.get_more_info)
             b.add_widget(entry)
-            btn = Button(text='Back', font_size=25)
+            btn = Button(text='Back', font_size=25, size_hint=(1, 0.2))
             btn.bind(on_release=self.exit_screen)
-            b.add_wdiget(btn)
+        b.add_widget(btn)
         return b
 
-    def exit_screem(self):
-        App.get_running_app().root.current = 'main_menu'
-        App.get_running_app.root.get_screen('info_screen').clear_widgets()
+    def exit_screen(self, btn):
+        self.parent.remove_widget(self)
+        self.clear_widgets()
+        App.get_running_app().root.transition = FallOutTransition()
+        App.get_running_app().root.current = 'main_screen'
 
+    def get_more_info(self, info):
+        pprint(info.memory)
+        """
+        MoreInfo(info.memory)
+        App.get_running_app().current = 'moreinfo_screen'
+"""
 
 class ConfigMenu(GridLayout):
     name = StringProperty(None)
@@ -80,7 +113,6 @@ class ConfigMenu(GridLayout):
     endpoints = ListProperty(['BR', 'EUNE', 'EUW', 'JP', 'KR',
                               'LAN', 'LAS', 'NA', 'OCE', 'TR',
                               'RU', 'PBE'])
-    box = ObjectProperty(None)
     err_pop = ObjectProperty(None)
     loading = ObjectProperty(None)
     q = queue.Queue()
@@ -93,12 +125,12 @@ class ConfigMenu(GridLayout):
         self.name = conf['summoner']
         self.region = conf['region'].upper()
         self.pop = Popup(size_hint=(0.7, 0.7))
-        self.box = BoxLayout(orientation='vertical')
+        box = BoxLayout(orientation='vertical')
         for item in self.endpoints:
             btn = RegionButton(text=item)
             btn.bind(on_release=self.set_region)
-            self.box.add_widget(btn)
-        self.pop.add_widget(self.box)
+            box.add_widget(btn)
+        self.pop.add_widget(box)
 
     def set_region(self, regbut):
         self.region = regbut.text
@@ -133,8 +165,6 @@ class MainMenu(BoxLayout):
 
     pop = ObjectProperty(None)
     err_pop = ObjectProperty(None)
-    bully_list = ListProperty(None)
-    friend_list = ListProperty(None)
 
     def __init__(self, **kwargs):
         super(MainMenu, self).__init__(**kwargs)
@@ -151,6 +181,7 @@ class MainMenu(BoxLayout):
         for item in friendlies + bullies:
             summ_list.append(item['summonerId'])
         league_info = backend.get_league(summ_list)
+        friend_list, bully_list = [], []
         for item in friendlies + bullies:
             op = {}
             sid = str(item['summonerId'])
@@ -164,12 +195,14 @@ class MainMenu(BoxLayout):
                     league_info[sid]['tier'],
                     league_info[sid]['entries'][0]['division'])
             op['champ'] = backend.get_champ(item['championId'])
+            op['runes'] = item['runes']
+            op['masteries'] = item['masteries']
             if item['teamId'] == friendly_team:
-                self.friend_list.append(op)
+                friend_list.append(op)
             else:
-                self.bully_list.append(op)
+                bully_list.append(op)
         self.reset_transition()
-        self.build_list(self.bully_list, self.friend_list)
+        self.build_list(bully_list, friend_list)
 
     def reset_transition(self):
         App.get_running_app().root.transition = RiseInTransition()
