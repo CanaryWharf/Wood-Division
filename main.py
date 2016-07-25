@@ -10,13 +10,12 @@ from kivy.uix.textinput import TextInput  # NOQA
 from kivy.properties import StringProperty
 from kivy.properties import ListProperty
 from kivy.uix.carousel import Carousel
-import time
+from kivy.uix.image import AsyncImage
 import queue
 import threading
 import simplejson as json
 import backend
 from pprint import pprint  # NOQA
-infoscreens = {}
 
 
 class ErrorPopup(Popup):
@@ -36,7 +35,35 @@ class RegionPopup(Popup):
 
 
 class InfoMenu(Carousel):
-    pass
+
+    def __init__(self, bully, friend, **kwargs):
+        super(InfoMenu, self).__init__(**kwargs)
+        self.add_widget(self.get_layout(bully, 'Bullies'))
+        self.add_widget(self.get_layout(friend, 'Friends'))
+        App.get_running_app().root.get_screen('info_screen').add_widget(self)
+
+    def get_layout(self, roster, team):
+        b = BoxLayout(orientation='vertical')
+        b.add_widget(StandardLabel(text=team))
+        for item in roster:
+            entry = BoxLayout(orientation='horizontal')
+            entry.add_widget(AsyncImage(
+                source='http://ddragon.leagueoflegends.com/cdn/5.2.1/img/champion/%s.png' % item['champ']['key']))  # NOQA
+            labels = BoxLayout(orientation='vertical')
+            if 'division' in item.keys():
+                labels.add_widget(StandardLabel(text=item['division']))
+                w, l = item['wins'], item['losses']
+                if l == 0:
+                    divisor = 1
+                else:
+                    divisor = l
+                labels.add_widget(StandardLabel(
+                    text='%.2f (%dW, %dL)' % (w/divisor, w, l)))
+            else:
+                labels.add_widget(StandardLabel(text='Scrub'))
+            entry.add_widget(labels)
+            b.add_widget(entry)
+        return b
 
 
 class ConfigMenu(GridLayout):
@@ -99,13 +126,14 @@ class MainMenu(BoxLayout):
 
     pop = ObjectProperty(None)
     err_pop = ObjectProperty(None)
+    bully_list = ListProperty(None)
+    friend_list = ListProperty(None)
 
     def __init__(self, **kwargs):
         super(MainMenu, self).__init__(**kwargs)
         self.pop = Popting()
 
     def lookup(self):
-        global infoscreens
         try:
             friendlies, bullies = backend.get_match(test=True)
         except TypeError:
@@ -116,7 +144,6 @@ class MainMenu(BoxLayout):
         for item in friendlies + bullies:
             summ_list.append(item['summonerId'])
         league_info = backend.get_league(summ_list)
-        friend_list, bully_list = [], []
         for item in friendlies + bullies:
             op = {}
             sid = str(item['summonerId'])
@@ -131,16 +158,18 @@ class MainMenu(BoxLayout):
                     league_info[sid]['entries'][0]['division'])
             op['champ'] = backend.get_champ(item['championId'])
             if item['teamId'] == friendly_team:
-                friend_list.append(op)
+                self.friend_list.append(op)
             else:
-                bully_list.append(op)
-        infoscreens['Friends'] = friend_list
-        infoscreens['Bullies'] = bully_list
+                self.bully_list.append(op)
         self.reset_transition()
-        App.get_running_app().root.current = 'info_screen'
+        self.build_list(self.bully_list, self.friend_list)
 
     def reset_transition(self):
         App.get_running_app().root.transition = RiseInTransition()
+
+    def build_list(self, bully, friend):
+        InfoMenu(bully, friend)
+        App.get_running_app().root.current = 'info_screen'
 
 
 class Popting(Popup):

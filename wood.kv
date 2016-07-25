@@ -11,7 +11,6 @@
     ConfigMenu:
 <InfoScreen>:
     name: 'info_screen'
-    InfoMenu:
 <InfoMenu>:
     direction: 'right'
 <StandardLabel>:
@@ -30,7 +29,7 @@
             root.reset_transition()
             app.root.current = 'config_screen'
     Button:
-        text: 'Launch (Also coming soon)'
+        text: 'Launch'
         on_release: root.lookup()
     StandardLabel:
         text: 'Pre-Alpha'
