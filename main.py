@@ -63,7 +63,14 @@ class InfoMenu(Carousel):
                 labels.add_widget(StandardLabel(text='Scrub'))
             entry.add_widget(labels)
             b.add_widget(entry)
+            btn = Button(text='Back', font_size=25)
+            btn.bind(on_release=self.exit_screen)
+            b.add_wdiget(btn)
         return b
+
+    def exit_screem(self):
+        App.get_running_app().root.current = 'main_menu'
+        App.get_running_app.root.get_screen('info_screen').clear_widgets()
 
 
 class ConfigMenu(GridLayout):
