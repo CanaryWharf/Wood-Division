@@ -11,13 +11,18 @@ from kivy.properties import StringProperty
 from kivy.properties import ListProperty
 from kivy.uix.carousel import Carousel
 from kivy.uix.image import AsyncImage
-from kivy.uix.pagelayout import PageLayout
 from kivy.uix.behaviors import ButtonBehavior
+from kivy.uix.scrollview import ScrollView
 import queue
 import threading
 import simplejson as json
+import re
 import backend
 from pprint import pprint  # NOQA
+
+
+class Heading(Label):
+    pass
 
 
 class ErrorPopup(Popup):
@@ -40,22 +45,98 @@ class nuBox(ButtonBehavior, BoxLayout):
     pass
 
 
-class MoreInfo(PageLayout):
+class MoreInfo(Carousel):
 
     def __init__(self, info, **kwargs):
         super(MoreInfo, self).__init__(**kwargs)
+        self.add_widget(self.champion_page(info['sid'], info['champ']))
+        self.add_widget(self.rune_page(info['runes']))
+        self.add_widget(self.masteries_page(info['masteries']))
 
-    def master_page(self, sid, cid):
-        pass
+    def champion_page(self, sid, clist):
+        view = ScrollView()
+        box = BoxLayout(orientation='vertical', spacing=10, padding=5)
+        profile = BoxLayout(orientation='horizontal')
+        profile.add_widget(AsyncImage(
+            source='http://ddragon.leagueoflegends.com/cdn/5.2.1/img/champion/%s.png' % clist['key'], size_hint_x=0.3))  # NOQA
+        topbox = BoxLayout(orientation='vertical')
+        topbox.add_widget(Heading(text=clist['name']))
+        results = backend.get_champ_mastery(sid, clist['id'])
+        if results:
+            mastery = results['championLevel']
+        else:
+            mastery = 'Absolute Scrublord'
+        topbox.add_widget(Heading(text='Level %d' % mastery))
+        profile.add_widget(topbox)
+        box.add_widget(profile)
+        passive = BoxLayout(orientation='vertical')
+        passive.add_widget(AsyncImage(
+            source='http://ddragon.leagueoflegends.com/cdn/6.14.2/img/passive/%s' % clist['passive']['image']['full'], size_hint_x=0.3))  # NOQA
+        passive.add_widget(StandardLabel(
+            text=clist['passive']['sanitizedDescription']))
+        for item in clist['spells']:
+            sanitised = self.sanitise(item)
+            b = BoxLayout(orientation='horizontal')
+            b.add_widget(AsyncImage(
+                source='http://ddragon.leagueoflegends.com/cdn/6.15.1/img/spell/%s' % item['image']['full'], size_hint_x=0.3))  # NOQA
+            b.add_widget(StandardLabel(text=sanitised))
+            box.add_widget(b)
+
+        btn = Button(text='Back')
+        btn.bind(on_press=self.back_button)
+        box.add_widget(btn)
+        view.add_widget(box)
+        return view
 
     def rune_page(self, runelist):
-        pass
+        return Label(text='Yolo')
 
     def masteries_page(self, masterylist):
-        pass
+        view = ScrollView()
+        box = BoxLayout(orientation='vertical',
+                        spacing=10,
+                        padding=5,
+                        size_hint_y=None)
+        for item in masterylist:
+            slot = BoxLayout(orientation='horizontal')
+            slot.add_widget(AsyncImage(
+                source='http://ddragon.leagueoflegends.com/cdn/6.15.1/img/rune/%d.png' % item['masteryId'],  # NOQA
+                size_hint_x=0.3))
+            box.add_widget(slot)
+
+        return view
+
+    def sanitise(self, spell):
+        regex = r'(\{\{.[aef][0-9].\}\})'
+        mo = re.findall(regex, spell['sanitizedTooltip'])
+        replacements = {}
+        for item in mo:
+            key = item[3] + item[4]
+            if key[0] == 'e':
+                replacements[item] = spell['effectBurn'][int(key[1])]
+            else:
+                if 'vars' in spell:
+                    for x in spell['vars']:
+                        if x['key'] == key:
+                            replacements[item] = str(x['coeff'][0]) + ' ' + x['link']  # NOQA
+                            break
+                        replacements[item] = 'Rito pls'
+                else:
+                    replacements[item] = 'Rito pls'
+        output = spell['sanitizedTooltip']
+        return self.scalings(replacements, output)
+
+    def back_button(self, btn):
+        App.get_running_app().root.current = 'info_screen'
+
+    def scalings(self, dic, text):
+        reg = re.compile("(%s)" % "|".join(map(re.escape, dic.keys())))
+
+        return reg.sub(lambda mo: dic[mo.string[mo.start():mo.end()]], text)
 
 
 class InfoMenu(Carousel):
+    used_screens = ListProperty(None)
 
     def __init__(self, bully, friend, **kwargs):
         super(InfoMenu, self).__init__(**kwargs)
@@ -96,15 +177,21 @@ class InfoMenu(Carousel):
     def exit_screen(self, btn):
         self.parent.remove_widget(self)
         self.clear_widgets()
+        for item in self.used_screens:
+            App.get_running_app().root.remove_widget(
+                App.get_running_app().root.get_screen(item))
         App.get_running_app().root.transition = FallOutTransition()
         App.get_running_app().root.current = 'main_screen'
 
     def get_more_info(self, info):
-        pprint(info.memory)
-        """
-        MoreInfo(info.memory)
-        App.get_running_app().current = 'moreinfo_screen'
-"""
+        if not App.get_running_app().root.has_screen(info.memory['sid']):
+            sc = Screen(name=info.memory['sid'])
+            m = MoreInfo(info.memory)
+            sc.add_widget(m)
+            App.get_running_app().root.add_widget(sc)
+            self.used_screens.append(info.memory['sid'])
+        App.get_running_app().root.current = info.memory['sid']
+
 
 class ConfigMenu(GridLayout):
     name = StringProperty(None)

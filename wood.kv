@@ -1,7 +1,6 @@
 <Screener>:
     MainScreen:
     InfoScreen:
-    MoreInfoScreen:
     ConfigScreen:
 <MainScreen>:
     name: 'main_screen'
@@ -11,17 +10,22 @@
     ConfigMenu:
 <InfoScreen>:
     name: 'info_screen'
-<MoreInfoScreen>:
-    name: 'moreinfo_screen'
 <InfoMenu>:
     direction: 'right'
+<TitleLabel>:
+    valign: 'middle'
+    halign: 'center'
+    font_size: 25
 <StandardLabel>:
     valign: 'middle'
+    size_hint_y: None
+    text_size: self.width, None
+    height: self.texture_size[1]
     halign: 'right'
-    font_size: 25
+    font_size: 20
 <MainMenu>:
     orientation: 'vertical'
-    StandardLabel:
+    Heading:
         text: 'Wood Division'
     StandardLabel:
         text: 'When you need to know who to blame'
@@ -47,11 +51,11 @@
         font_size: 25
 <ConfigMenu>:
     cols: 2
-    StandardLabel:
+    Heading:
         text: 'Config'
-    StandardLabel:
-        text: 'Yolo'
-    StandardLabel:
+    Heading:
+        text: ' '
+    Heading:
         text: 'Summoner'
     TextInput:
         id: n_box
@@ -59,7 +63,7 @@
         font_size: 25
         halign: 'center'
         valign: 'middle'
-    StandardLabel:
+    Heading:
         text: 'Region'
     Button:
         text: root.region
