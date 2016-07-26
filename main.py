@@ -19,6 +19,7 @@ import simplejson as json
 import re
 import backend
 from pprint import pprint  # NOQA
+ddragon = None
 
 
 class Heading(Label):
@@ -58,7 +59,7 @@ class MoreInfo(Carousel):
         box = BoxLayout(orientation='vertical', spacing=10, padding=5)
         profile = BoxLayout(orientation='horizontal')
         profile.add_widget(AsyncImage(
-            source='http://ddragon.leagueoflegends.com/cdn/5.2.1/img/champion/%s.png' % clist['key'], size_hint_x=0.3))  # NOQA
+            source='http://ddragon.leagueoflegends.com/cdn/%s/img/champion/%s.png' % (ddragon, clist['key']), size_hint_x=0.3))  # NOQA
         topbox = BoxLayout(orientation='vertical')
         topbox.add_widget(Heading(text=clist['name']))
         results = backend.get_champ_mastery(sid, clist['id'])
@@ -71,14 +72,14 @@ class MoreInfo(Carousel):
         box.add_widget(profile)
         passive = BoxLayout(orientation='vertical')
         passive.add_widget(AsyncImage(
-            source='http://ddragon.leagueoflegends.com/cdn/6.14.2/img/passive/%s' % clist['passive']['image']['full'], size_hint_x=0.3))  # NOQA
+            source='http://ddragon.leagueoflegends.com/cdn/%s/img/passive/%s' % (ddragon, clist['passive']['image']['full']), size_hint_x=0.3))  # NOQA
         passive.add_widget(StandardLabel(
             text=clist['passive']['sanitizedDescription']))
         for item in clist['spells']:
             sanitised = self.sanitise(item)
             b = BoxLayout(orientation='horizontal')
             b.add_widget(AsyncImage(
-                source='http://ddragon.leagueoflegends.com/cdn/6.15.1/img/spell/%s' % item['image']['full'], size_hint_x=0.3))  # NOQA
+                source='http://ddragon.leagueoflegends.com/cdn/%s/img/spell/%s' % (ddragon, item['image']['full']), size_hint_x=0.3))  # NOQA
             b.add_widget(StandardLabel(text=sanitised))
             box.add_widget(b)
 
@@ -99,8 +100,8 @@ class MoreInfo(Carousel):
         for item in runelist:
             slot = BoxLayout(orientation='horizontal')
             slot.add_widget(AsyncImage(
-                source='http://ddragon.leagueoflegends.com/cdn/6.15.1/img/rune/%s' % runes['data'][  # NOQA
-                    str(item['runeId'])]['image']['full'],
+                source='http://ddragon.leagueoflegends.com/cdn/%s/img/rune/%s' % (ddragon, runes['data'][  # NOQA
+                    str(item['runeId'])]['image']['full']),
                 size_hint_x=0.3))
             details = runes['data'][
                 str(item['runeId'])]['description']
@@ -124,7 +125,8 @@ class MoreInfo(Carousel):
         for item in masterylist:
             slot = BoxLayout(orientation='horizontal')
             slot.add_widget(AsyncImage(
-                source='http://ddragon.leagueoflegends.com/cdn/6.15.1/img/mastery/%d.png' % item['masteryId'],  # NOQA
+                source='http://ddragon.leagueoflegends.com/cdn/%s/img/mastery/%s' % (ddragon, masteries['data'][  # NOQA
+                    str(item['masteryId'])]['image']['full']),  # NOQA
                 size_hint_x=0.3))
             details = masteries['data'][
                 str(item['masteryId'])]['description'][item['rank']-1]
@@ -196,7 +198,7 @@ class InfoMenu(Carousel):
                           padding=[1, 5],
                           size_hint=(1, 0.6))
             entry.add_widget(AsyncImage(
-                source='http://ddragon.leagueoflegends.com/cdn/5.2.1/img/champion/%s.png' % item['champ']['key'], size_hint=(0.2, 1)))  # NOQA
+                source='http://ddragon.leagueoflegends.com/cdn/%s/img/champion/%s' % (ddragon, item['champ']['image']['full']), size_hint=(0.2, 1)))  # NOQA
             labels = BoxLayout(orientation='vertical', size_hint=(0.6, 1))
             if 'division' in item.keys():
                 labels.add_widget(StandardLabel(text=item['division']))
@@ -300,11 +302,15 @@ class MainMenu(BoxLayout):
 
     def __init__(self, **kwargs):
         super(MainMenu, self).__init__(**kwargs)
+        global ddragon
+        ddragon = backend.get_version()
         self.pop = Popting()
+        if ddragon is None:
+            self.pop.open()
 
     def lookup(self):
         try:
-            friendlies, bullies = backend.get_match(test=True)
+            friendlies, bullies = backend.get_match(test=False)
         except TypeError:
             self.pop.open()
             return

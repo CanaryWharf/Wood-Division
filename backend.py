@@ -20,6 +20,14 @@ endpoints = {
 }
 
 
+def get_version():
+    data = get_data('%s/api/lol/static-data/%s/v1.2/versions?api_key=%s',
+                    (config['global'],
+                     config['region'],
+                     config['api_key']))  # NOQa
+    return data[0]
+
+
 def change_name(new_name, region):
     global config
     sumdata = get_data('%s/api/lol/%s/v1.4/summoner/by-name/%s?api_key=%s',
@@ -114,7 +122,7 @@ def get_champ_mastery(summoner, champ):
 
 def get_champ(champ_id):
     """retrieves static champion data"""
-    data = get_data('%s/api/lol/static-data/%s/v1.2/champion/%d?champData=passive,spells&api_key=%s',  # NOQA
+    data = get_data('%s/api/lol/static-data/%s/v1.2/champion/%d?champData=passive,image,spells&api_key=%s',  # NOQA
                     (config['global'],
                      config['region'],
                      champ_id,
@@ -124,7 +132,7 @@ def get_champ(champ_id):
 
 def get_masteries():
     """retrieve static mastery data"""
-    data = get_data('%s/api/lol/static-data/%s/v1.2/mastery?api_key=%s',
+    data = get_data('%s/api/lol/static-data/%s/v1.2/mastery?masteryListData=image&api_key=%s',  # NOQA
                     (config['global'],
                      config['region'],
                      config['api_key']))
