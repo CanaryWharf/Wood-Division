@@ -46,6 +46,18 @@ class nuBox(ButtonBehavior, BoxLayout):
     pass
 
 
+class ScrollBox(GridLayout):
+    pass
+
+
+class Portrait(AsyncImage):
+    pass
+
+
+class Scroller(ScrollView):
+    pass
+
+
 class MoreInfo(Carousel):
 
     def __init__(self, info, **kwargs):
@@ -55,10 +67,10 @@ class MoreInfo(Carousel):
         self.add_widget(self.rune_page(info['runes']))
 
     def champion_page(self, sid, clist):
-        view = ScrollView()
-        box = BoxLayout(orientation='vertical', spacing=10, padding=5)
+        view = Scroller()
+        box = ScrollBox()
         profile = BoxLayout(orientation='horizontal')
-        profile.add_widget(AsyncImage(
+        profile.add_widget(Portrait(
             source='http://ddragon.leagueoflegends.com/cdn/%s/img/champion/%s.png' % (ddragon, clist['key']), size_hint_x=0.3))  # NOQA
         topbox = BoxLayout(orientation='vertical')
         topbox.add_widget(Heading(text=clist['name']))
@@ -71,14 +83,14 @@ class MoreInfo(Carousel):
         profile.add_widget(topbox)
         box.add_widget(profile)
         passive = BoxLayout(orientation='vertical')
-        passive.add_widget(AsyncImage(
+        passive.add_widget(Portrait(
             source='http://ddragon.leagueoflegends.com/cdn/%s/img/passive/%s' % (ddragon, clist['passive']['image']['full']), size_hint_x=0.3))  # NOQA
         passive.add_widget(StandardLabel(
             text=clist['passive']['sanitizedDescription']))
         for item in clist['spells']:
             sanitised = self.sanitise(item)
             b = BoxLayout(orientation='horizontal')
-            b.add_widget(AsyncImage(
+            b.add_widget(Portrait(
                 source='http://ddragon.leagueoflegends.com/cdn/%s/img/spell/%s' % (ddragon, item['image']['full']), size_hint_x=0.3))  # NOQA
             b.add_widget(StandardLabel(text=sanitised))
             box.add_widget(b)
@@ -90,19 +102,16 @@ class MoreInfo(Carousel):
         return view
 
     def rune_page(self, runelist):
-        view = ScrollView()
+        view = Scroller()
         runes = backend.get_runes()
-        box = BoxLayout(orientation='vertical',
-                        spacing=10,
-                        padding=5)
+        box = ScrollBox()
         box.add_widget(Heading(text='Runes'))
 
         for item in runelist:
             slot = BoxLayout(orientation='horizontal')
-            slot.add_widget(AsyncImage(
+            slot.add_widget(Portrait(
                 source='http://ddragon.leagueoflegends.com/cdn/%s/img/rune/%s' % (ddragon, runes['data'][  # NOQA
-                    str(item['runeId'])]['image']['full']),
-                size_hint_x=0.3))
+                    str(item['runeId'])]['image']['full'])))
             details = runes['data'][
                 str(item['runeId'])]['description']
             desc = self.rune_calculate(details, item['count'])
@@ -116,18 +125,15 @@ class MoreInfo(Carousel):
         return view
 
     def masteries_page(self, masterylist):
-        view = ScrollView()
+        view = Scroller()
         masteries = backend.get_masteries()
-        box = BoxLayout(orientation='vertical',
-                        spacing=10,
-                        padding=5)
+        box = ScrollBox()
         box.add_widget(Heading(text='Masteries'))
         for item in masterylist:
             slot = BoxLayout(orientation='horizontal')
-            slot.add_widget(AsyncImage(
+            slot.add_widget(Portrait(
                 source='http://ddragon.leagueoflegends.com/cdn/%s/img/mastery/%s' % (ddragon, masteries['data'][  # NOQA
-                    str(item['masteryId'])]['image']['full']),  # NOQA
-                size_hint_x=0.3))
+                    str(item['masteryId'])]['image']['full'])))
             details = masteries['data'][
                 str(item['masteryId'])]['description'][item['rank']-1]
             slot.add_widget(StandardLabel(text=details))
@@ -144,9 +150,7 @@ class MoreInfo(Carousel):
         regex = re.compile(r'["+"-]([0-9]+["."]?[0-9]*)\%?\s[a-z\s\/1-9"."]*\(?(["+"-][0-9]+["."]?[0-9]*)?\%?\s?[a-z\s\/1-9"."]*')  # NOQA
         mo = re.findall(regex, desc)
         replacements = {}
-        print(mo)
         for item in mo:
-            print(item)
             replacements[item[0]] = "%.2f" % (float(item[0])*count)
         ans = self.scalings(replacements, desc)
         return ans
@@ -310,7 +314,7 @@ class MainMenu(BoxLayout):
 
     def lookup(self):
         try:
-            friendlies, bullies = backend.get_match(test=False)
+            friendlies, bullies = backend.get_match(test=True)
         except TypeError:
             self.pop.open()
             return
