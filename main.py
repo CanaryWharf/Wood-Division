@@ -50,8 +50,8 @@ class MoreInfo(Carousel):
     def __init__(self, info, **kwargs):
         super(MoreInfo, self).__init__(**kwargs)
         self.add_widget(self.champion_page(info['sid'], info['champ']))
-        self.add_widget(self.rune_page(info['runes']))
         self.add_widget(self.masteries_page(info['masteries']))
+        self.add_widget(self.rune_page(info['runes']))
 
     def champion_page(self, sid, clist):
         view = ScrollView()
@@ -89,22 +89,65 @@ class MoreInfo(Carousel):
         return view
 
     def rune_page(self, runelist):
-        return Label(text='Yolo')
+        view = ScrollView()
+        runes = backend.get_runes()
+        box = BoxLayout(orientation='vertical',
+                        spacing=10,
+                        padding=5)
+        box.add_widget(Heading(text='Runes'))
+
+        for item in runelist:
+            slot = BoxLayout(orientation='horizontal')
+            slot.add_widget(AsyncImage(
+                source='http://ddragon.leagueoflegends.com/cdn/6.15.1/img/rune/%s' % runes['data'][  # NOQA
+                    str(item['runeId'])]['image']['full'],
+                size_hint_x=0.3))
+            details = runes['data'][
+                str(item['runeId'])]['description']
+            desc = self.rune_calculate(details, item['count'])
+            slot.add_widget(StandardLabel(text=desc))
+            box.add_widget(slot)
+
+        btn = Button(text='Back')
+        btn.bind(on_press=self.back_button)
+        box.add_widget(btn)
+        view.add_widget(box)
+        return view
 
     def masteries_page(self, masterylist):
         view = ScrollView()
+        masteries = backend.get_masteries()
         box = BoxLayout(orientation='vertical',
                         spacing=10,
-                        padding=5,
-                        size_hint_y=None)
+                        padding=5)
+        box.add_widget(Heading(text='Masteries'))
         for item in masterylist:
             slot = BoxLayout(orientation='horizontal')
             slot.add_widget(AsyncImage(
-                source='http://ddragon.leagueoflegends.com/cdn/6.15.1/img/rune/%d.png' % item['masteryId'],  # NOQA
+                source='http://ddragon.leagueoflegends.com/cdn/6.15.1/img/mastery/%d.png' % item['masteryId'],  # NOQA
                 size_hint_x=0.3))
+            details = masteries['data'][
+                str(item['masteryId'])]['description'][item['rank']-1]
+            slot.add_widget(StandardLabel(text=details))
             box.add_widget(slot)
 
+        btn = Button(text='Back')
+        btn.bind(on_press=self.back_button)
+        box.add_widget(btn)
+        view.add_widget(box)
+
         return view
+
+    def rune_calculate(self, desc, count):
+        regex = re.compile(r'["+"-]([0-9]+["."]?[0-9]*)\%?\s[a-z\s\/1-9"."]*\(?(["+"-][0-9]+["."]?[0-9]*)?\%?\s?[a-z\s\/1-9"."]*')  # NOQA
+        mo = re.findall(regex, desc)
+        replacements = {}
+        print(mo)
+        for item in mo:
+            print(item)
+            replacements[item[0]] = "%.2f" % (float(item[0])*count)
+        ans = self.scalings(replacements, desc)
+        return ans
 
     def sanitise(self, spell):
         regex = r'(\{\{.[aef][0-9].\}\})'
@@ -127,12 +170,13 @@ class MoreInfo(Carousel):
         return self.scalings(replacements, output)
 
     def back_button(self, btn):
+        App.get_running_app().root.transition = FallOutTransition()
         App.get_running_app().root.current = 'info_screen'
 
     def scalings(self, dic, text):
         reg = re.compile("(%s)" % "|".join(map(re.escape, dic.keys())))
 
-        return reg.sub(lambda mo: dic[mo.string[mo.start():mo.end()]], text)
+        return reg.sub(lambda mo: dic[mo.string[mo.start():mo.end()]], text, 1)
 
 
 class InfoMenu(Carousel):
@@ -190,6 +234,7 @@ class InfoMenu(Carousel):
             sc.add_widget(m)
             App.get_running_app().root.add_widget(sc)
             self.used_screens.append(info.memory['sid'])
+        App.get_running_app().root.transition = RiseInTransition()
         App.get_running_app().root.current = info.memory['sid']
 
 

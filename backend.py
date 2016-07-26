@@ -122,22 +122,20 @@ def get_champ(champ_id):
     return data
 
 
-def get_masteries(mid):
+def get_masteries():
     """retrieve static mastery data"""
-    data = get_data('%s/api/lol/static-data/%s/v1.2/mastery/%d?api_key=%s',
+    data = get_data('%s/api/lol/static-data/%s/v1.2/mastery?api_key=%s',
                     (config['global'],
                      config['region'],
-                     mid,
                      config['api_key']))
     return data
 
 
-def get_runes(rid):
+def get_runes():
     """retrieve static rune data"""
-    data = get_data('%s/api/lol/static-data/%s/v1.2/rune/%d?api_key=%s',
+    data = get_data('%s/api/lol/static-data/%s/v1.2/rune?runeListData=image&api_key=%s',  # NOQA
                     (config['global'],
                      config['region'],
-                     rid,
                      config['api_key']))
     return data
 
