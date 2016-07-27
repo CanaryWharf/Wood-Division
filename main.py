@@ -13,12 +13,9 @@ from kivy.uix.carousel import Carousel
 from kivy.uix.image import AsyncImage
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.scrollview import ScrollView
-import queue
-import threading
 import simplejson as json
 import re
 import backend
-from pprint import pprint  # NOQA
 ddragon = None
 
 
@@ -95,7 +92,7 @@ class MoreInfo(Carousel):
             b.add_widget(StandardLabel(text=sanitised))
             box.add_widget(b)
 
-        btn = Button(text='Back')
+        btn = Button(text='Back', height=5)
         btn.bind(on_press=self.back_button)
         box.add_widget(btn)
         view.add_widget(box)
@@ -152,7 +149,7 @@ class MoreInfo(Carousel):
         replacements = {}
         for item in mo:
             replacements[item[0]] = "%.2f" % (float(item[0])*count)
-        ans = self.scalings(replacements, desc)
+        ans = self.scalings(replacements, desc, rune=True)
         return ans
 
     def sanitise(self, spell):
@@ -179,10 +176,14 @@ class MoreInfo(Carousel):
         App.get_running_app().root.transition = FallOutTransition()
         App.get_running_app().root.current = 'info_screen'
 
-    def scalings(self, dic, text):
+    def scalings(self, dic, text, rune=False):
         reg = re.compile("(%s)" % "|".join(map(re.escape, dic.keys())))
-
-        return reg.sub(lambda mo: dic[mo.string[mo.start():mo.end()]], text, 1)
+        if rune:
+            return reg.sub(lambda mo: dic[mo.string[mo.start():mo.end()]],
+                           text, 1)
+        else:
+            return reg.sub(lambda mo: dic[mo.string[mo.start():mo.end()]],
+                           text)
 
 
 class InfoMenu(Carousel):
@@ -253,7 +254,6 @@ class ConfigMenu(GridLayout):
                               'RU', 'PBE'])
     err_pop = ObjectProperty(None)
     loading = ObjectProperty(None)
-    q = queue.Queue()
 
     def __init__(self, **kwargs):
         super(ConfigMenu, self).__init__(**kwargs)
@@ -273,16 +273,6 @@ class ConfigMenu(GridLayout):
     def set_region(self, regbut):
         self.region = regbut.text
         self.pop.dismiss()
-
-    def save_changes(self, namtext):
-        self.loading = Popup(title='please wait',
-                             size_hint=(0.7, 0.7),
-                             auto_dismiss=False,
-                             content=Label(text='Processing'))
-        self.loading.open()
-        changes = threading.Thread(target=self.set_name,
-                                   args=(namtext,))
-        changes.start()
 
     def set_name(self, namtext):
         self.name = namtext.text
@@ -314,7 +304,7 @@ class MainMenu(BoxLayout):
 
     def lookup(self):
         try:
-            friendlies, bullies = backend.get_match(test=True)
+            friendlies, bullies = backend.get_match(test=False)
         except TypeError:
             self.pop.open()
             return
