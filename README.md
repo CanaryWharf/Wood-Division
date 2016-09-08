@@ -1,16 +1,16 @@
 # Wood Division
 
 
-Provides tactical information regarding a game.
+Provides tactical information for League of Legends.
 
 This program is designed to take the mundane task of opposition research and automate it.
 
 This program will assist in the following ways:  
 
-- Provide League and Division Info  
+- Provide Player League and Division Info  
 - Provide Champion Mastery info  
-- Provide Runes and Masteries  
-- Provide Win/Loss Ratios
+- Provide Player Runes and Masteries  
+- Provide Player Win/Loss Ratios
 
 To Do:  
 - Make it look pretty  
