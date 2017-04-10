@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h4> Hello World </h4>
+<div id="NameForm">
+<form action="/viewgame" method="post">
+    {{form.name(placeholder='Summoner Name') }}
+    {{form.region}}
+    {{form.submit}}
+</form>
+</div>
+
+{% endblock %}

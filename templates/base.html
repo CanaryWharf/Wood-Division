@@ -1,0 +1,15 @@
+<!doctype html>
+
+<html>
+    <head>
+        {% if title %}
+        <title> Wood Division - {{ title }}</title>
+        {% else %}
+        <title> Wood Division </title>
+        {% endif %}
+    </head>
+    <body>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>
