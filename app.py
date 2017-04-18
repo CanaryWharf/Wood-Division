@@ -13,7 +13,8 @@ def index():
                            title = "Tester page",
                            form = form)
 
-def fucked(reason):
+@app.errorhandler(404)
+def fucked(reason="Can't find what you're looking for"):
     return render_template('notfound.html',
                            reason=reason)
 

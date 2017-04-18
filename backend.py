@@ -81,7 +81,10 @@ def sanitisedat(playas, runedata, masterydata, spelldata, champdata, config, fri
             x['desc'] = parse_runes(dat['sanitizedDescription'], count)
             entry['runes'].append(x)
         entry['Dkey'] = spelldata[str(item['spell1Id'])]
+        entry['Dkey']['image'] = '%s/spell/%s' % (ddragon, entry['Dkey']['filename'])
+        print(entry['Dkey'])
         entry['Fkey'] = spelldata[str(item['spell2Id'])]
+        entry['Fkey']['image'] = '%s/spell/%s' % (ddragon, entry['Fkey']['filename'])
         # Champion Data
         c = champdata[str(item['championId'])]
         entry['champ'] = c['name']
@@ -100,7 +103,7 @@ def sanitisedat(playas, runedata, masterydata, spelldata, champdata, config, fri
         # Still misssing shit on ritos end
         for spell in c['spells']:
             x = {
-                'image' : "%s/spells/%s" % (ddragon, spell['image']['full']),
+                'image' : "%s/spell/%s" % (ddragon, spell['image']['full']),
                 'cooldown' :spell['cooldownBurn'],
                 'desc' : spell['sanitizedDescription']
 
@@ -135,7 +138,7 @@ def fix_your_spells_rito(spelldata):
     output = {}
     for item in spelldata['data'].values():
         entry = {
-            'image': item['image']['full'],
+            'filename': item['image']['full'],
             'name': item['name'],
             'desc': item['sanitizedDescription']
         }

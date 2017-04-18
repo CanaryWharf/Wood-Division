@@ -1,0 +1,28 @@
+.moredata {
+    display: none;
+}
+
+.Playainfo {
+    margin-top: auto;
+    width: 50%;
+    position: relative;
+    margin-bottom: auto;
+    margin-left: 20px;
+}
+
+.summonerSpell img {
+    width: 20px;
+    height: auto;
+}
+
+.champicon {
+    margin: auto;
+    width: 100px;
+    height: auto;
+
+}
+
+.division {
+    width: 30px;
+    height: auto;
+}

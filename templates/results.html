@@ -1,13 +1,62 @@
 {% extends "base.html" %}
 {% block content %}
 <h4> {{ name }}'s Game </h4>
+
 <div class="Bullies">
     {% for player in bully %}
-    <div class="playa bully">
-        <img src="{{ player.image }}" ></img>
-        {{ player.summoner }}
-        {{ player.league }}
-    </div>
+    <table class="bully results">
+        <tr class="playerRow" id="{{player.summoner}}">
+            <td> <img class="champicon" src="{{ player.image }}" ></img> </td>
+            <td class="summoneName" >{{ player.summoner }} </td>
+            <td> <img class="division" src="{{url_for('static', filename=player.league.split()[0] + '.png')}}"></img> </td>
+            <td class-"summonerDivision"> {{ player.league }} </td>
+            <td class="summonerSpell"> <img src="{{player.Dkey.image}}" title="{{player.Dkey.name}}"></img></td>
+            <td class="summonerSpell"> <img src="{{player.Fkey.image}}" title="{{player.Fkey.name}}"></img></td>
+            <td> Runes </td>
+            <td> Masteries </td>
+            <td> Champion Information </td>
+        </tr>
+    </table>
+    <table class="moredata runedata">
+
+        {% for rune in player.runes %}
+        <tr>
+            <td> <img class="rune" src="{{rune.image}}"></img></td>
+            <td> {{rune.desc}} </td>
+        </tr>
+
+        {% endfor %}
+    </table>
+    <table class="moredata masterydata">
+
+        {% for mastery in player.masteries %}
+        <tr>
+            <td> <img class="mastery" src="{{mastery.image}}"></img></td>
+            <td> {{ mastery.desc }} </td>
+        </tr>
+
+        {% endfor %}
+    </table>
+    <table class="moredata spelldata">
+        <tr>
+            <td> <img src="{{player.passive.image}}"></img></td>
+            <td> {{player.passive.desc}} </td>
+        </tr>
+        {% for spell in player.spells %}
+        <tr>
+            <td> <img src="{{spell.image}}" class="spellImage"></img></td>
+            <td> {{spell.desc}} </td>
+            <td class="cooldown"> Cooldown: {{spell.cooldown}}  </td>
+        </tr>
+
+        {% endfor %}
+        {% for tip in player.tips %}
+        <tr>
+            <td colspan="5"> {{tip}} </td>
+        </tr>
+        {% endfor %}
+    </table>
     {% endfor %}
 </div>
+
 {% endblock %}
