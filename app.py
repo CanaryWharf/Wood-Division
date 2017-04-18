@@ -18,11 +18,15 @@ def fucked(reason="Can't find what you're looking for"):
     return render_template('notfound.html',
                            reason=reason)
 
-@app.route('/viewgame', methods=['POST'])
+@app.route('/viewgame', methods=['GET', 'POST'])
 def viewgame():
     test = True
-    name = request.form['name']
-    region = request.form['region']
+    if request.method == "POST":
+        name = request.form['name']
+        region = request.form['region']
+    else:
+        name = "Wood Division Tester"
+        region = "EUW"
     key = os.environ.get('rito_api_key')
     if not test:
         config = backend.get_config(name, region, key)

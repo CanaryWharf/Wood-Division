@@ -2,6 +2,26 @@
     display: none;
 }
 
+table {
+    width: 100%;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.tips li {
+    padding: 10px;
+}
+
+li {
+    padding: 2px;
+}
+
+button {
+    width: 100%;
+}
+
 .Playainfo {
     margin-top: auto;
     width: 50%;
