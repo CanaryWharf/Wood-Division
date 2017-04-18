@@ -36,11 +36,11 @@ def viewgame():
     else:
         filename = open('refined_testdata.json')
         x = json.load(filename)
-        filename.lose()
+        filename.close()
         friend, bully = x['Friends'], x['Bullies']
 
     return render_template('results.html',
-                           title='Name Page',
+                           title='Results',
                            name = name,
                            friend = friend,
                            bully = bully)

@@ -100,7 +100,7 @@ def sanitisedat(playas, runedata, masterydata, spelldata, champdata, config, fri
         # Still misssing shit on ritos end
         for spell in c['spells']:
             x = {
-                'image' : "%s/spells/%s" % (ddragon, spell['image']),
+                'image' : "%s/spells/%s" % (ddragon, spell['image']['full']),
                 'cooldown' :spell['cooldownBurn'],
                 'desc' : spell['sanitizedDescription']
 

@@ -1,4 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
 <h4> {{ name }}'s Game </h4>
+<div class="Bullies">
+    {% for player in bully %}
+    <div class="playa bully">
+        <img src="{{ player.image }}" ></img>
+        {{ player.summoner }}
+        {{ player.league }}
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}
