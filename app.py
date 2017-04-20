@@ -18,6 +18,11 @@ def fucked(reason="Can't find what you're looking for"):
     return render_template('notfound.html',
                            reason=reason)
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+
 @app.route('/viewgame', methods=['GET', 'POST'])
 def viewgame():
     test = True
@@ -33,7 +38,7 @@ def viewgame():
         if not config:
             return fucked("Couldn't find Summoner: %s in %s" % (name, region))
 
-        match = backend.get_match(config, test=True)
+        match = backend.get_match(config, test=False)
         if not match:
             return fucked("%s is not in a game" % (name))
 
@@ -47,8 +52,7 @@ def viewgame():
     return render_template('results.html',
                            title='Results',
                            name = name,
-                           friend = friend,
-                           bully = bully)
+                           team = [bully, friend])
 
 
 if __name__=="__main__":

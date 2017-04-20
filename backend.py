@@ -64,6 +64,7 @@ def sanitisedat(playas, runedata, masterydata, spelldata, champdata, config, fri
         entry['champMastery'] = item['champMastery']['championLevel']
         entry['league'] = item['league']
         entry['summoner'] = item['summonerName']
+        entry['nameid'] = str(item['summonerId'])
         entry['masteries'] = []
         for m in item['masteries']:
             n = {}
@@ -161,7 +162,7 @@ def load_match(friendlies, bullies, config):
     spelldata = fix_your_spells_rito(get_spells(config))
     champdata = fix_your_champs_rito(get_champ(config))
     foutput = sanitisedat(friendlies, runedata, masterydata, spelldata, champdata, config, True)
-    boutput = sanitisedat(bullies, runedata, masterydata, spelldata, champdata, config, True)
+    boutput = sanitisedat(bullies, runedata, masterydata, spelldata, champdata, config, False)
 
     return foutput, boutput
 

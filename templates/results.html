@@ -2,28 +2,39 @@
 {% block content %}
 <h4> {{ name }}'s Game </h4>
 
-<div class="Bullies">
+
+<hr>
+
+{% for bully in team %}
+
+{% if loop.first %}
+<h2> Bullies </h2>
+{% else %}
+<h2> Friends </h2>
+{% endif %}
+
+<div class="PlayerList">
     {% for player in bully %}
     <table class="bully results">
-        <tr class="playerRow" id="{{player.summoner}}">
+        <tr class="playerRow" id="{{player.nameid}}">
             <td> <img class="champicon" src="{{ player.image }}" ></img> </td>
             <td class="summoneName" >{{ player.summoner }} </td>
             <td> <img class="division" src="{{url_for('static', filename=player.league.split()[0] + '.png')}}"></img> </td>
-            <td class-"summonerDivision"> {{ player.league }} </td>
+            <td class="summonerDivision"> {{ player.league }} </td>
             <td class="summonerSpell"> <img src="{{player.Dkey.image}}" title="{{player.Dkey.name}}"></img></td>
             <td class="summonerSpell"> <img src="{{player.Fkey.image}}" title="{{player.Fkey.name}}"></img></td>
-            <td> <img src="{{url_for('static', filename='Champ' + player.champMastery|string + '.png')}}"></img> </td>
-            <td>
+            <td class="summMastery"> <img src="{{url_for('static', filename='Champ' + player.champMastery|string + '.png')}}"></img> </td>
+            <td class="summButtons">
                 <ul>
-                    <li> <button type="button" onclick="showContainer({{player.summoner}}, 'runedata')"> Runes </button> </li>
-                    <li> <button type="button" onclick="showContainer({{player.summoner}}, 'masterydata')"> Masteries </button> </li>
-                    <li> <button type="button" onclick="showContainer({{player.summoner}}, 'spelldata')"> Champion Info </button> </li>
+                    <li> <button type="button" onclick="showContainer('{{player.nameid}}', 'runedata')">Runes</button> </li>
+                    <li> <button type="button" onclick="showContainer('{{player.nameid}}', 'masterydata')">Masteries</button> </li>
+                    <li> <button type="button" onclick="showContainer('{{player.nameid}}', 'spelldata')">Champion</button> </li>
                 </ul>
             </td>
         </tr>
     </table>
-    <div class="morecontainer" id="{{player.summoner + 'moreInfo'}}">
-        <table class="moredata runedata" id="{{player.summoner + 'runedata'}}">
+    <div class="morecontainer" id="{{player.nameid + 'moreInfo'}}">
+        <table class="moredata runedata" id="{{player.nameid + 'runedata'}}">
 
             {% for rune in player.runes %}
             <tr>
@@ -33,7 +44,7 @@
 
             {% endfor %}
         </table>
-        <table class="moredata masterydata" id="{{player.summoner + 'masterydata'}}">
+        <table class="moredata masterydata" id="{{player.nameid + 'masterydata'}}">
 
             {% for mastery in player.masteries %}
             <tr>
@@ -43,7 +54,7 @@
 
             {% endfor %}
         </table>
-        <table class="moredata spelldata" id="{{player.summoner + 'spelldata'}}">
+        <table class="moredata spelldata" id="{{player.nameid + 'spelldata'}}">
             <tr>
                 <td> <img src="{{player.passive.image}}"></img></td>
                 <td> {{player.passive.desc}} </td>
@@ -70,92 +81,21 @@
     {% endfor %}
 </div>
 
-<div class="Friends">
-    {% for player in friend %}
-    <table class="bully results">
-        <tr class="playerRow" id="{{player.summoner}}">
-            <td> <img class="champicon" src="{{ player.image }}" ></img> </td>
-            <td class="summoneName" >{{ player.summoner }} </td>
-            <td> <img class="division" src="{{url_for('static', filename=player.league.split()[0] + '.png')}}"></img> </td>
-            <td class-"summonerDivision"> {{ player.league }} </td>
-            <td class="summonerSpell"> <img src="{{player.Dkey.image}}" title="{{player.Dkey.name}}"></img></td>
-            <td class="summonerSpell"> <img src="{{player.Fkey.image}}" title="{{player.Fkey.name}}"></img></td>
-            <td> <img src="{{url_for('static', filename='Champ' + player.champMastery|string + '.png')}}"></img> </td>
-            <td>
-                <ul>
-                    <li> <button type="button" onclick="showContainer({{player.summoner}}, 'runedata')"> Runes </button> </li>
-                    <li> <button type="button" onclick="showContainer({{player.summoner}}, 'masterydata')"> Masteries </button> </li>
-                    <li> <button type="button" onclick="showContainer({{player.summoner}}, 'spelldata')"> Champion Info </button> </li>
-                </ul>
-            </td>
-        </tr>
-    </table>
-    <div class="morecontainer" id="{{player.summoner + 'moreInfo'}}">
-        <table class="moredata runedata" id="{{player.summoner + 'runedata'}}">
+<hr>
 
-            {% for rune in player.runes %}
-            <tr>
-                <td> <img class="rune" src="{{rune.image}}"></img></td>
-                <td> {{rune.desc}} </td>
-            </tr>
-
-            {% endfor %}
-        </table>
-        <table class="moredata masterydata" id="{{player.summoner + 'masterydata'}}">
-
-            {% for mastery in player.masteries %}
-            <tr>
-                <td> <img class="mastery" src="{{mastery.image}}"></img></td>
-                <td> {{ mastery.desc }} </td>
-            </tr>
-
-            {% endfor %}
-        </table>
-        <table class="moredata spelldata" id="{{player.summoner + 'spelldata'}}">
-            <tr>
-                <td> <img src="{{player.passive.image}}"></img></td>
-                <td> {{player.passive.desc}} </td>
-            </tr>
-            {% for spell in player.spells %}
-            <tr>
-                <td> <img src="{{spell.image}}" class="spellImage"></img></td>
-                <td> {{spell.desc}} </td>
-                <td class="cooldown"> Cooldown: {{spell.cooldown}}  </td>
-            </tr>
-
-            {% endfor %}
-            <tr>
-                <td colspan="5"> 
-                    <ul class="tips">
-                        {% for tip in player.tips %}
-                        <li>{{ tip}} </li>
-                        {% endfor %}
-                    </ul>
-                </td>
-            </tr>
-        </table>
-    </div>
-    {% endfor %}
-</div>
-
-
-
+{% endfor %}
 
 <script>
 var showContainer = function(name, cont) {
-    var c = document.getElementById(name.id + cont);
+    var c = document.getElementById(name + cont);
+    var x = c.style.display == 'none' || !c.hasAttribute("style");
     var elements = document.getElementsByClassName("moredata");
     for (let i = 0; i < elements.length; i++) {
         elements[i].style.display = "none";
     }
-    console.log(c.style.display);
-    if (c.style.display == "block") {
-        c.style.display = "none";
-        console.log("True");
-    } else {
-        c.style.display = "block";
-    }
-
+    if (x) {
+        c.style.display = 'block';
+    } 
 }
 </script>
 

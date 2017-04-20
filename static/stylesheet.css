@@ -1,5 +1,107 @@
+:root {
+    --red: #EA4329;
+    --white: #fdffff;
+    --dblue: #08415c;
+    --grey: #4f6d7a;
+    --blue: #3e78b2;
+}
+
+#name {
+    border: 1px solid var(--blue);
+    padding: 9px 10px;
+}
+
+#region {
+    color: var(--white);
+    background-color: var(--blue);
+    border: none;
+    padding: 7px; 10px;
+    margin-left: 20px;
+}
+
+#submit {
+    border: none;
+    padding: 9px 10px;
+    color: var(--white);
+    background-color: var(--blue);
+}
+
+#NameForm {
+    position: fixed;
+    top: 30%;
+    left: 35%;
+}
+
+
+
+h4 {
+    text-align: center;
+    color: var(--grey);
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--red);
+}
+
+.navbar ul li {
+    float: left;
+}
+
+.navbar ul li a {
+    displaY: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar ul li a:hover {
+    background-color: var(--white);
+    color: var(--red);
+}
+
+body {
+    background-color: var(--white);
+    padding-top: 1%;
+    width: 80%;
+    margin: auto;
+}
+
 .moredata {
     display: none;
+}
+
+.PlayerList {
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.summonerDivision {
+    width: 20%;
+}
+
+.summoneName {
+    text-align: center;
+    width: 300px;
+
+}
+
+.playerRow td:first-child {
+    width: 10%;
+
+}
+
+.playerRow td:nth-child(3) {
+    width: 6%;
+}
+
+h2 {
+    margin: auto;
+    text-align: center;
 }
 
 table {
@@ -22,6 +124,15 @@ button {
     width: 100%;
 }
 
+.summMastery {
+    width: 15%;
+    padding-left: 5%;
+}
+
+.summMastery img {
+    width: 100%;
+}
+
 .Playainfo {
     margin-top: auto;
     width: 50%;
@@ -30,19 +141,23 @@ button {
     margin-left: 20px;
 }
 
+.summonerSpell {
+    width: 3%;
+}
+
 .summonerSpell img {
-    width: 20px;
+    width: 100%;
     height: auto;
 }
 
 .champicon {
     margin: auto;
-    width: 100px;
+    width: 100%;
     height: auto;
 
 }
 
 .division {
-    width: 30px;
+    width: 100%;
     height: auto;
 }
