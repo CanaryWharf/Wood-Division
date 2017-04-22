@@ -26,7 +26,7 @@ def get_stats(playalist, config, results):
         if str(item['summonerId']) in results.keys():
             item['league'] = results[str(item['summonerId'])]['tier'] + ' ' + results[str(item['summonerId'])]['entries'][0]['division']  # NOQA
         else:
-            item['league'] = 'True Wood'
+            item['league'] = 'TRUE WOOD'
         item['champMastery'] = get_champ_mastery(item['summonerId'],
                                                  item['championId'],
                                                  config)

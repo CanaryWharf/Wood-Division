@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
+<div id="back">
+<h2> Mid and Feede </h2>
 <div id="NameForm">
-<form action="/viewgame" method="post">
     <h4> Search for Live Game </h4>
+<form action="/viewgame" method="post">
     {{form.name(placeholder='Summoner Name') }}
     {{form.region}}
     {{form.submit}}
 </form>
+</div>
 </div>
 
 {% endblock %}

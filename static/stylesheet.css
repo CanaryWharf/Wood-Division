@@ -19,17 +19,32 @@
     margin-left: 20px;
 }
 
-#submit {
+.morecontainer {
+    margin-left: 4%;
+    margin-right: 4%;
+}
+
+option {
+    background-color: var(--white);
+    color: var(--blue);
+}
+
+button, #submit {
     border: none;
     padding: 9px 10px;
     color: var(--white);
     background-color: var(--blue);
 }
 
+button:hover, #submit:hover {
+    color: var(--white);
+    background-color: var(--red);
+}
+
 #NameForm {
     position: fixed;
     top: 30%;
-    left: 35%;
+    left: 37%;
 }
 
 
@@ -44,7 +59,7 @@ h4 {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: var(--red);
+    background-color: var(--blue);
 }
 
 .navbar ul li {
@@ -61,7 +76,7 @@ h4 {
 
 .navbar ul li a:hover {
     background-color: var(--white);
-    color: var(--red);
+    color: var(--blue);
 }
 
 body {
@@ -102,6 +117,8 @@ body {
 h2 {
     margin: auto;
     text-align: center;
+    margin-top: 6%;
+    color: var(--red);
 }
 
 table {
