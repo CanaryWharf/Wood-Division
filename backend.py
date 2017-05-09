@@ -1,5 +1,5 @@
 import simplejson as json
-from pprint import pprint
+from pprint import pprint  # NOQA
 import requests
 import time
 import re
@@ -47,7 +47,7 @@ def parse_runes(desc, count):
         x = float(num) * count
         if x >= 0:
             output += "+"
-        output += str(x)
+        output += "%.2f" % x
         if percent:
             output += "%"
         output += " "
@@ -83,7 +83,6 @@ def sanitisedat(playas, runedata, masterydata, spelldata, champdata, config, fri
             entry['runes'].append(x)
         entry['Dkey'] = spelldata[str(item['spell1Id'])]
         entry['Dkey']['image'] = '%s/spell/%s' % (ddragon, entry['Dkey']['filename'])
-        print(entry['Dkey'])
         entry['Fkey'] = spelldata[str(item['spell2Id'])]
         entry['Fkey']['image'] = '%s/spell/%s' % (ddragon, entry['Fkey']['filename'])
         # Champion Data
@@ -91,6 +90,7 @@ def sanitisedat(playas, runedata, masterydata, spelldata, champdata, config, fri
         entry['champ'] = c['name']
         entry['key'] = c['key']
         entry['image'] = "%s/champion/%s" % (ddragon, c['image'])
+        entry['splash'] = "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/%s_0.jpg" % (c['key'])
         if friend:
             entry['tips'] = c['allytips']
         else:
@@ -138,6 +138,7 @@ def fix_your_champs_rito(champdata):
 def fix_your_spells_rito(spelldata):
     output = {}
     for item in spelldata['data'].values():
+        pprint(item)
         entry = {
             'filename': item['image']['full'],
             'name': item['name'],
@@ -168,30 +169,27 @@ def load_match(friendlies, bullies, config):
 
 
 def get_version(config):
-    data = get_data('%s/api/lol/static-data/%s/v1.2/versions?api_key=%s',
-                    (config['global'],
-                     config['region'],
+    data = get_data('%s/lol/static-data/v3/versions?api_key=%s',
+                    (config['url'],
                      config['api_key']))  # NOQa
     return data[0]
 
 
 def get_config(new_name, region, apikey):
-    sumdata = get_data('%s/api/lol/%s/v1.4/summoner/by-name/%s?api_key=%s',
-                       ('https://%s.api.pvp.net' % region.lower(),
-                        region.lower(),
+    sumdata = get_data('%s/lol/summoner/v3/summoners/by-name/%s?api_key=%s',
+                       ('https://%s.api.riotgames.com' % endpoints[region].lower(),
                         new_name,
                         apikey))
     if not sumdata:
         return False
     con = {}
-    con['global'] = 'https://global.api.riotgames.com'
     con['api_key'] = apikey
     con['summoner'] = new_name
     con['region'] = region.lower()
     con['platform'] = endpoints[region]
-    con['url'] = 'https://%s.api.pvp.net' % region.lower()
-    con['id'] = sumdata[
-        ''.join(c.lower() for c in new_name if not c.isspace())]['id']
+    con['url'] = 'https://%s.api.riotgames.com' % endpoints[region].lower()
+    con['other_url'] = 'https://%s.api.riotgames.com' % region.lower()
+    con['id'] = sumdata['id']
     con['version'] = get_version(con)
     return con
 
@@ -203,6 +201,8 @@ def get_data(url, argtings, recursion = 5):
         return None
     response = requests.get(url % argtings)
     if response.status_code == 404 or response.status_code == 403:
+        print("Something Not Found")
+        print(url % argtings)
         return None
     if response.status_code == 429:
         for i in range(10):
@@ -217,9 +217,8 @@ def get_data(url, argtings, recursion = 5):
 def get_match(config, test=False):
     """Retrieves current match data. If test, it will use testdata"""
     if not test:
-        data = get_data('%s/observer-mode/rest/consumer/getSpectatorGameInfo/%s/%s?api_key=%s',  # NOQA
+        data = get_data('%s/lol/spectator/v3/active-games/by-summoner/%s?api_key=%s',  # NOQA
                         (config['url'],
-                         config['platform'],
                          config['id'],
                          config['api_key']))
     else:
@@ -246,7 +245,7 @@ def get_match(config, test=False):
 def get_league(summoners, config):
     """retrieves Division information for players. Accepts up to 10 players"""
     data = get_data('%s/api/lol/%s/v2.5/league/by-summoner/%s/entry?api_key=%s',  # NOQA
-                    (config['url'],
+                    (config['other_url'],
                      config['region'],
                      ','.join(map(str, summoners)),
                      config['api_key']))
@@ -261,9 +260,9 @@ def get_league(summoners, config):
 
 def get_champ_mastery(summoner, champ, config):
     """retrieves champion mastery informatiion"""
-    data = get_data('%s/championmastery/location/%s/player/%d/champion/%d?api_key=%s',  # NOQA
+
+    data = get_data('%s/lol/champion-mastery/v3/champion-masteries/by-summoner/%s/by-champion/%s?api_key=%s',  # NOQA
                     (config['url'],
-                     config['platform'],
                      int(summoner),
                      int(champ),
                      config['api_key']))
@@ -272,37 +271,34 @@ def get_champ_mastery(summoner, champ, config):
 
 def get_champ(config):
     """retrieves static champion data"""
-    data = get_data('%s/api/lol/static-data/%s/v1.2/champion?champData=allytips,enemytips,passive,image,spells&api_key=%s',  # NOQA
-                    (config['global'],
-                     config['region'],
+    data = get_data('%s/lol/static-data/v3/champions?champListData=allytips,enemytips,passive,image,spells&api_key=%s',  # NOQA
+                    (config['url'],
                      config['api_key']))
     return data
 
 
 def get_masteries(config):
     """retrieve static mastery data"""
-    data = get_data('%s/api/lol/static-data/%s/v1.2/mastery?masteryListData=image&api_key=%s',  # NOQA
-                    (config['global'],
-                     config['region'],
+    data = get_data('%s/lol/static-data/v3/masteries?masteryListData=image&api_key=%s',  # NOQA
+                    (config['url'],
                      config['api_key']))
     return data
 
 
 def get_runes(config):
     """retrieve static rune data"""
-    data = get_data('%s/api/lol/static-data/%s/v1.2/rune?runeListData=image,sanitizedDescription,stats,tags&api_key=%s',  # NOQA
-                    (config['global'],
-                     config['region'],
+    data = get_data('%s/lol/static-data/v3/runes?runeListData=image,sanitizedDescription,stats,tags&api_key=%s',  # NOQA
+                    (config['url'],
                      config['api_key']))
     return data
 
 
 def get_spells(config):
     """retrieve static spell data"""
-    data = get_data('%s/api/lol/static-data/%s/v1.2/summoner-spell?spellData=image,sanitizedDescription&api_key=%s',  # NOQA
-                    (config['global'],
-                     config['region'],
+    data = get_data('%s/lol/static-data/v3/summoner-spells?spellListData=image,sanitizedDescription&api_key=%s',  # NOQA
+                    (config['url'],
                      config['api_key']))
+    pprint(data)
     return data
 
 
@@ -317,6 +313,6 @@ if __name__ == "__main__":
         "Bullies": dats[1]
     }
     filename = open("refined_testdata.json", "w")
-    json.dump(x, filename)
+    json.dump(x, filename, indent="    ")
     filename.close()
     #parse_runes("+4.5% attack speed", 9)

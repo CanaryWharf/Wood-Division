@@ -3,6 +3,7 @@ from forms import SummonerForm
 import backend
 import simplejson as json
 import os
+from pprint import pprint
 app = Flask(__name__)
 app.config.from_object('config')
 
@@ -52,7 +53,8 @@ def viewgame():
     return render_template('results.html',
                            title='Results',
                            name = name,
-                           team = [bully, friend])
+                           bully = bully,
+                           friend = friend)
 
 
 if __name__=="__main__":
