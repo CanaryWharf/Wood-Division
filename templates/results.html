@@ -5,7 +5,7 @@
 <div class="PlayaList BullyList">
     <div class="pbuttons">
         {% for player in bully %}
-        <div class="PlayaButton" onclick="showContainer({{player.nameid}})">
+        <div class="PlayaButton" onclick="showContainer('{{'p' + player.nameid}}')">
             <img src="{{player.image}}"></img>
             <img src="{{url_for('static', filename=player.league.split()[0] + ".png")}}" alt="{{player.league}}"></img>
         </div>
@@ -16,24 +16,25 @@
     <hr>
     <div class="infoData">
         {% for player in bully + friend %}
-        <div class="pcard" id="{{player.nameid}}">
+        <div class="pcard" id="p{{player.nameid}}">
             <div class="splash">
             <img src="{{player.splash}}"></img>
             </div>
             <div class="title">
                 <h6>{{player.champ}}</h6>
-                <h8>{{player.summoner}}</h8>
+                <h8>{{player.summoner}}</h8><br>
+                <h8>{{player.league}}</h8>
                 <div class="summonerspells">
                     <img src={{player.Fkey.image}}></img>
                     <img src={{player.Dkey.image}}></img>
                 </div>
                 <div class="pcardmenu">
                     <ul>
-                        <li><a onclick="showMore({{player.nameid}}, 'runes')"> Runes </a></li>
-                        <li> <a onclick="showMore({{player.nameid}}, 'masteries')"> Masteries </a></li>
-                        <li> <a onclick="showMore({{player.nameid}}, 'spells')"> Spells </a></li>
+                        <li><a onclick="showMore('{{'p' + player.nameid}}', 'runes')"> Runes </a></li>
+                        <li> <a onclick="showMore('{{'p' + player.nameid}}', 'masteries')"> Masteries </a></li>
+                        <li> <a onclick="showMore('{{'p' + player.nameid}}', 'spells')"> Spells </a></li>
 
-                        <li> <a onclick="showMore({{player.nameid}}, 'notes')"> Notes </a></li>
+                        <li> <a onclick="showMore('{{'p' + player.nameid}}', 'notes')"> Notes </a></li>
                     </ul>
 
                 </div>
@@ -41,7 +42,7 @@
 
 
             </div>
-            <div class="moreinfo moredata" id="{{player.nameid + 'runes'}}">
+            <div class="moreinfo moredata" id="p{{player.nameid + 'runes'}}">
                 {% for rune in player.runes %}
                 <div class="runeBlock">
                     <img src="{{rune.image}}"></img>
@@ -51,21 +52,21 @@
 
             </div>
 
-            <div class="moreinfo" id="{{player.nameid + 'masteries'}}">
+            <div class="moreinfo masterydata" id="p{{player.nameid + 'masteries'}}">
                 {% for m in player.masteries %}
                 <div class="mblock">
                     <div class="mimg">
                     <img src="{{m.image}}"> </img>
                     </div>
                     <div class="mdesc">
-                        <h7> {{m.name}}</h7><br>
+                    <h7> {{m.name}}</h7><br>
                     {{m.desc}}
                     </div>
                 </div>
                 {% endfor %}
 
             </div>
-            <div class="moreinfo morenotes actuallynotes" id="{{player.nameid + 'notes'}}">
+            <div class="moreinfo morenotes actuallynotes" id="p{{player.nameid + 'notes'}}">
                 <div class="note">
                     <ul>
                 {% for note in player.tips %}
@@ -77,14 +78,17 @@
 
             </div>
 
-            <div class="moreinfo morenotes" id="{{player.nameid + 'spells'}}">
+            <div class="moreinfo morenotes" id="p{{player.nameid + 'spells'}}">
                 <div class="spellblock">
                     <div class="spellimg">
                     <img src="{{player.passive.image}}"></img>
                     </div>
                     <div class="spelldesc">
-                    {{player.passive.desc}}<br>
-                    {{player.passive.cooldown}}
+                    {{player.passive.desc}}
+                    {% if player.passive.cooldown %}
+                    <br>
+                    Cooldown: {{player.passive.cooldown}} seconds
+                    {% endif %}
                     </div>
                 </div>
                 {% for s in player.spells %}
@@ -94,7 +98,9 @@
                     </div>
                     <div class="spelldesc">
                         {{s.desc}} <br>
-                    {{s.cooldown}}
+                        {% if s.cooldown %}
+                        Cooldown: {{s.cooldown}} seconds
+                        {% endif %}
                     </div>
                 </div>
                 {% endfor %}
@@ -116,7 +122,7 @@
     <hr>
     <div class="pbuttons">
         {% for player in friend %}
-        <div class="PlayaButton" onclick="showContainer({{player.nameid}})">
+        <div class="PlayaButton" onclick="showContainer('{{'p' + player.nameid}}')">
             <img src="{{url_for('static', filename=player.league.split()[0] + ".png")}}" alt="{{player.league}}"></img>
 
             <img src="{{player.image}}"></img>
@@ -133,21 +139,16 @@
 <script>
 var showContainer = function(name) {
     var c = document.getElementById(name);
-    var x = c.style.display == 'none' || !c.hasAttribute("style");
     var elements = document.getElementsByClassName("pcard");
     for (let i = 0; i < elements.length; i++) {
         elements[i].style.display = "none";
     }
-    if (x) {
-        c.style.display = 'grid';
-    } 
+    c.style.display = 'grid';
 }
 
 var showMore = function(name, tab) {
     var c = document.getElementById(name + tab);
-    console.log(c);
-    var elements = document.getElementsByClassName("moreinfo");
-    console.log(elements);
+    var elements = document.querySelectorAll("#" + name + " .moreinfo");
     for (let i = 0; i < elements.length; i++) {
         elements[i].style.display = "none";
     }

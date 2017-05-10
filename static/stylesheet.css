@@ -91,9 +91,15 @@ button {
 }
 
 .pcard {
-    display: none;
+    display: grid;
     grid-template-columns: repeat(5, 1fr);
 }
+
+.pcard ~ .pcard {
+    display: none;
+}
+
+
 
 .splash {
     grid-column-start: 1;
@@ -164,8 +170,6 @@ h8 {
     grid-auto-rows: minmax(100px, auto)
 }
 
-.infoData {
-}
 
 .moreinfo {
     display: none;
@@ -191,7 +195,7 @@ h8 {
 .spellblock {
     display: grid;
     grid-template-columns: 1fr 5fr;
-    grid-gap 10px;
+    grid-gap: 10px;
 }
 
 .note ul {
@@ -207,14 +211,54 @@ h8 {
     width: 100%;
 }
 
+h7 {
+    font-weight: bold;
+}
+
 .mblock {
-    display: grid;
-    grid-template-columns: 1fr 5fr;
-    margin-top: 10px;
+    /*display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
+    margin-top: 10px;*/
+    position: relative;
+    margin-bottom: 20%;
 }
 
 .mblock img {
     width: 100%;
+}
+
+.mblock:hover .mdesc {
+    display: inline-block;
+    position: absolute;
+    text-align: center;
+    z-index: 1;
+    background-color: black;
+    color: white;
+    border-radius: 6px;
+    padding: 5px;
+    width: 300%;
+    margin-left: -120%;
+}
+/*
+.mdesc:after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.mdesc:before {
+    left: 50%;
+    transform: translateX(-50%);
+}
+*/
+.mdesc {
+    display: none;
+}
+
+.masterydata {
+    margin-top: 10%;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10%;
 }
 
 .moredata {
@@ -238,8 +282,8 @@ h8 {
     font-size: x-small;
 }
 
-.pcardmen ul li {
-    float: left;
+.pcardmenu ul li {
+    cursor: pointer;
 }
 
 .pcardmenu ul li a {
@@ -261,4 +305,5 @@ h8 {
 .PlayaButton {
     width: 50px;
     height: auto;
+    cursor: pointer;
 }
