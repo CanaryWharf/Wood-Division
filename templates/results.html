@@ -5,9 +5,10 @@
 <div class="PlayaList BullyList">
     <div class="pbuttons">
         {% for player in bully %}
-        <div class="PlayaButton" onclick="showContainer('{{'p' + player.nameid}}')">
+        <div class="PlayaButton bullybutton" onclick="showContainer('{{'p' + player.nameid}}')">
             <img src="{{player.image}}"></img>
             <img src="{{url_for('static', filename=player.league.split()[0] + ".png")}}" alt="{{player.league}}"></img>
+            <h1> {{player.league}} </h1>
         </div>
 
         {% endfor %}
@@ -135,7 +136,7 @@
     <hr>
     <div class="pbuttons">
         {% for player in friend %}
-        <div class="PlayaButton" onclick="showContainer('{{'p' + player.nameid}}')">
+        <div class="PlayaButton friendbutton" onclick="showContainer('{{'p' + player.nameid}}')">
             <img src="{{url_for('static', filename=player.league.split()[0] + ".png")}}" alt="{{player.league}}"></img>
 
             <img src="{{player.image}}"></img>
