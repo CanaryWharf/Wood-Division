@@ -25,8 +25,19 @@
                 <h8>{{player.summoner}}</h8><br>
                 <h8>{{player.league}}</h8>
                 <div class="summonerspells">
-                    <img src={{player.Fkey.image}}></img>
+                    <div class="summtool">
+                    <img class = "spa" src={{player.Fkey.image}}></img>
+                    <div class="summdesc">
+                        {{player.Fkey.desc}}
+                    </div>
+                    </div>
+                    <div class="summtool">
                     <img src={{player.Dkey.image}}></img>
+                        <div class="summdesc">
+                            {{player.Dkey.desc}}
+                        </div>
+
+                    </div>
                 </div>
                 <div class="pcardmenu">
                     <ul>
@@ -58,8 +69,10 @@
                     <div class="mimg">
                     <img src="{{m.image}}"> </img>
                     </div>
-                    <div class="mdesc">
+                    <div class="mname">
                     <h7> {{m.name}}</h7><br>
+                    </div>
+                    <div class="mdesc">
                     {{m.desc}}
                     </div>
                 </div>

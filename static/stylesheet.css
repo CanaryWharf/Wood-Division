@@ -139,7 +139,7 @@ h8 {
 
 }
 .summonerspells img {
-    width: 44%;
+    width: 100%;
     height: auto;
 }
 
@@ -224,6 +224,30 @@ h7 {
     margin-bottom: 20%;
 }
 
+.summdesc {
+    display: none;
+}
+
+.summtool {
+    display: inline-block;
+    width: 44%;
+}
+
+.summtool:hover .summdesc {
+    display: inline-block;
+    position: absolute;
+    text-align: center;
+    z-index: 1;
+    background-color: black;
+    color: white;
+    border-radius: 6px;
+    padding: 5px;
+    width: 36%;
+    margin-left: -14%;
+    font-size: x-small;
+    font-family: 'Roboto condensed';
+}
+
 .mblock img {
     width: 100%;
 }
@@ -257,12 +281,16 @@ h7 {
 
 .masterydata {
     margin-top: 10%;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 10%;
+    grid-template-columns: repeat(auto-fill, 45px);
+    grid-gap: 14%;
+}
+
+.mname {
+    text-align: center;
 }
 
 .moredata {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, 64px);
     grid-gap: 10px;
 }
 
