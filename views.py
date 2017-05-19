@@ -8,6 +8,8 @@ import config
 app = Flask(__name__)
 app.config.from_object(config)
 
+here = os.path.dirname(__file__)
+
 
 
 @app.route('/')
@@ -48,7 +50,7 @@ def viewgame():
 
         friend, bully = backend.load_match(match[0], match[1], config)
     else:
-        filename = open('refined_testdata.json')
+        filename = open(os.path.join(here, 'refined_testdata.json'))
         x = json.load(filename)
         filename.close()
         friend, bully = x['Friends'], x['Bullies']
