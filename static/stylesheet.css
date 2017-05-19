@@ -16,7 +16,22 @@
     background-color: var(--blue);
     border: none;
     padding: 7px; 10px;
-    margin-left: 20px;
+}
+
+#back {
+    text-align: center;
+    font-family: 'Open Sans';
+    color: var(--black);
+}
+
+h1 {
+    font-size: 48%;
+    text-align: center;
+    font-family: 'Roboto Condensed';
+    font-weight: 100;
+    color: var(--black);
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .morecontainer {
@@ -42,16 +57,13 @@ button:hover, #submit:hover {
 }
 
 #NameForm {
-    position: fixed;
-    top: 30%;
-    left: 37%;
 }
 
 
 
 h4 {
     text-align: center;
-    color: var(--white);
+    color: var(--black);
 }
 
 .navbar ul {

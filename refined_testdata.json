@@ -1,0 +1,1281 @@
+{
+    "Friends": [
+        {
+            "champMastery": 3,
+            "league": "SILVER III",
+            "summoner": "ChoGath Bot",
+            "nameid": "kawaiiasfuck",
+            "masteries": [
+                {
+                    "name": "Sorcery",
+                    "desc": "+2.0% increased Ability damage",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6114.png"
+                },
+                {
+                    "name": "Feast",
+                    "desc": "Killing a unit restores 20 Health (30 second cooldown)",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6122.png"
+                },
+                {
+                    "name": "Natural Talent",
+                    "desc": "Gain 2 + 0.44 per level Attack Damage, and 3 + 0.67 per level Ability Power (+10 Attack Damage and 15 Ability Power at level 18)",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6134.png"
+                },
+                {
+                    "name": "Bounty Hunter",
+                    "desc": "Deal 1% increased damage for each unique enemy champion you have killed",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6141.png"
+                },
+                {
+                    "name": "Wanderer",
+                    "desc": "+3% Movement Speed out of combat",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6311.png"
+                },
+                {
+                    "name": "Runic Affinity",
+                    "desc": "Buffs from neutral monsters last 15% longer",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6321.png"
+                },
+                {
+                    "name": "Meditation",
+                    "desc": "Regenerate 1.25% of your missing Mana every 5 seconds",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6332.png"
+                },
+                {
+                    "name": "Dangerous Game",
+                    "desc": "Champion kills and assists restore 5% of your missing Health and Mana",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6343.png"
+                },
+                {
+                    "name": "Precision",
+                    "desc": "Gain 6 Lethality and 1.5 + 0.25 per level Magic Penetration",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6351.png"
+                },
+                {
+                    "name": "Thunderlord's Decree",
+                    "desc": "Your 3rd attack or damaging spell against the same enemy champion calls down a lightning strike, dealing magic damage in the area. <br><br>Damage: 10 per level, plus 30% of your Bonus Attack Damage, and 10% of your Ability Power (25-15 second cooldown, based on level).",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6362.png"
+                }
+            ],
+            "runes": [
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/r_1_3.png",
+                    "desc": "+8.55 attack damage"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/b_3_3.png",
+                    "desc": "+12.06 magic resist"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/y_1_3.png",
+                    "desc": "+9.00 armor"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/bl_3_3.png",
+                    "desc": "+13.50% attack speed"
+                }
+            ],
+            "Dkey": {
+                "filename": "SummonerSmite.png",
+                "name": "Smite",
+                "desc": "Deals 390-1000 true damage (depending on champion level) to target epic or large monster or enemy minion. Restores Health based on your maximum life when used against monsters.",
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/SummonerSmite.png"
+            },
+            "Fkey": {
+                "filename": "SummonerFlash.png",
+                "name": "Flash",
+                "desc": "Teleports your champion a short distance toward your cursor's location.",
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/SummonerFlash.png"
+            },
+            "champ": "Cho'Gath",
+            "key": "Chogath",
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/champion/Chogath.png",
+            "splash": "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/Chogath_0.jpg",
+            "tips": [
+                "Try to line up your attacks with Vorpal Spikes so that they kill minions and harass enemy champions at the same time.",
+                "If you're having difficulty feasting upon champions, try eating minions until you're larger.",
+                "Using Rupture on creeps in combination with Carnivore is a good way to gain Health and Mana."
+            ],
+            "passive": {
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/passive/GreenTerror_TailSpike.png",
+                "desc": "Whenever Cho'Gath kills a unit, he recovers Health and Mana. The values restored increase with Cho'Gath's level."
+            },
+            "spells": [
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/Rupture.png",
+                    "cooldown": "9",
+                    "desc": "Ruptures the ground at target location, popping enemy units into the air, dealing damage and slowing them."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/FeralScream.png",
+                    "cooldown": "13/12/11/10/9",
+                    "desc": "Cho'Gath unleashes a terrible scream at enemies in a cone, dealing magic damage and Silencing enemies for a few seconds."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/VorpalSpikes.png",
+                    "cooldown": "0.5",
+                    "desc": "Cho'Gath's attacks passively release deadly spikes, dealing damage to all enemy units in front of him."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/Feast.png",
+                    "cooldown": "80",
+                    "desc": "Devours an enemy unit, dealing a high amount of true damage. If the target is killed, Cho'Gath grows, gaining maximum Health."
+                }
+            ]
+        },
+        {
+            "champMastery": 6,
+            "league": "BRONZE III",
+            "summoner": "Twitch Bot",
+            "nameid": "mastersplinter",
+            "masteries": [
+                {
+                    "name": "Fury",
+                    "desc": "+4% Attack Speed",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6111.png"
+                },
+                {
+                    "name": "Fresh Blood",
+                    "desc": "Your first basic attack against a champion deals an additional 10 +1 per level damage (6 second cooldown)",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6121.png"
+                },
+                {
+                    "name": "Vampirism",
+                    "desc": "+2.0% Lifesteal and Spell Vamp",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6131.png"
+                },
+                {
+                    "name": "Double Edged Sword",
+                    "desc": "Deal 3% additional damage, take 1.5% additional damage.",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6142.png"
+                },
+                {
+                    "name": "Battering Blows",
+                    "desc": "+7% Armor Penetration",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6151.png"
+                },
+                {
+                    "name": "Fervor of Battle",
+                    "desc": "Hitting champions with basic attacks generates a Fervor stack (2 for melee attacks). Stacks of Fervor last 8 seconds (max 8 stacks)and increase your AD by 1-8 for each stack.",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6162.png"
+                },
+                {
+                    "name": "Savagery",
+                    "desc": "Single target attacks and spells deal 5 bonus damage to minions and monsters",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6312.png"
+                },
+                {
+                    "name": "Secret Stash",
+                    "desc": "Your Potions and Elixirs last 10% longer.<br><br>Your Health Potions are replaced with Biscuits that restore 15 Health and Mana instantly on use",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6322.png"
+                },
+                {
+                    "name": "Merciless",
+                    "desc": "Deal 3% increased damage to champions below 40% Health",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6331.png"
+                },
+                {
+                    "name": "Dangerous Game",
+                    "desc": "Champion kills and assists restore 5% of your missing Health and Mana",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6343.png"
+                }
+            ],
+            "runes": [
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/r_1_3.png",
+                    "desc": "+8.55 attack damage"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/b_3_3.png",
+                    "desc": "+12.06 magic resist"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/y_1_3.png",
+                    "desc": "+9.00 armor"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/bl_3_3.png",
+                    "desc": "+13.50% attack speed"
+                }
+            ],
+            "Dkey": {
+                "filename": "SummonerHeal.png",
+                "name": "Heal",
+                "desc": "Restores 90-345 Health (depending on champion level) and grants 30% Movement Speed for 1 second to you and target allied champion. This healing is halved for units recently affected by Summoner Heal.",
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/SummonerHeal.png"
+            },
+            "Fkey": {
+                "filename": "SummonerFlash.png",
+                "name": "Flash",
+                "desc": "Teleports your champion a short distance toward your cursor's location.",
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/SummonerFlash.png"
+            },
+            "champ": "Twitch",
+            "key": "Twitch",
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/champion/Twitch.png",
+            "splash": "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/Twitch_0.jpg",
+            "tips": [
+                "Twitch's Attack Speed is among the highest in the game; try purchasing items with on-hit effects such as Black Cleaver or Wit's End.",
+                "Contaminate has a large range; apply as many stacks of Deadly Venom as possible before using it.",
+                "You can catch up to an enemy out of attack range with Venom Cask."
+            ],
+            "passive": {
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/passive/Twitch_Passive.png",
+                "desc": "Twitch's basic attacks infect the target, dealing true damage each second."
+            },
+            "spells": [
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/TwitchHideInShadows.png",
+                    "cooldown": "16",
+                    "desc": "Twitch becomes Camouflaged for a short duration and gains Movement Speed. When leaving Camouflage, Twitch gains Attack Speed for a short duration. When an enemy champion with Deadly Venom dies, Ambush's cooldown is reset."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/TwitchVenomCask.png",
+                    "cooldown": "13/12/11/10/9",
+                    "desc": "Twitch hurls a cask of venom that explodes in an area, slowing targets and applying deadly venom to the target."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/TwitchExpunge.png",
+                    "cooldown": "12/11/10/9/8",
+                    "desc": "Twitch wreaks further havoc on poisoned enemies with a blast of his vile diseases."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/TwitchFullAutomatic.png",
+                    "cooldown": "90",
+                    "desc": "Twitch unleashes the full power of his crossbow, shooting bolts over a great distance that pierce all enemies caught in their path."
+                }
+            ]
+        },
+        {
+            "champMastery": 5,
+            "league": "CHALLENGER IV",
+            "summoner": "Janna Bot",
+            "nameid": "literallyrunthistown",
+            "masteries": [
+                {
+                    "name": "Recovery",
+                    "desc": "+2.0 Health per 5 seconds",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6211.png"
+                },
+                {
+                    "name": "Explorer",
+                    "desc": "+15 Movement Speed in Brush and River",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6221.png"
+                },
+                {
+                    "name": "Runic Armor",
+                    "desc": "Shields, healing, regeneration, and lifesteal on you are 8% stronger",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6231.png"
+                },
+                {
+                    "name": "Insight",
+                    "desc": "Reduces the cooldown of Summoner Spells by 15%",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6241.png"
+                },
+                {
+                    "name": "Wanderer",
+                    "desc": "+3% Movement Speed out of combat",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6311.png"
+                },
+                {
+                    "name": "Secret Stash",
+                    "desc": "Your Potions and Elixirs last 10% longer.<br><br>Your Health Potions are replaced with Biscuits that restore 15 Health and Mana instantly on use",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6322.png"
+                },
+                {
+                    "name": "Meditation",
+                    "desc": "Regenerate 1.25% of your missing Mana every 5 seconds",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6332.png"
+                },
+                {
+                    "name": "Bandit",
+                    "desc": "Gain 1 gold for each nearby minion killed by an ally. <br><br>Gain 3 gold (10 if melee) when hitting an enemy champion with a basic attack (5 second cooldown)",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6342.png"
+                },
+                {
+                    "name": "Intelligence",
+                    "desc": "Your Cooldown Reduction cap is increased to 45% and you gain 5% Cooldown Reduction",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6352.png"
+                },
+                {
+                    "name": "Windspeaker's Blessing",
+                    "desc": "Your heals and shields are 10% stronger. Additionally, your shields and heals on other allies increase their armor by 5-22 (based on level) and their magic resistance by half that amount for 3 seconds.",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6363.png"
+                }
+            ],
+            "runes": [
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/b_3_2.png",
+                    "desc": "+8.28 ability power"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/r_1_3.png",
+                    "desc": "+7.83 magic penetration"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/y_1_3.png",
+                    "desc": "+9.00 armor"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/bl_3_3.png",
+                    "desc": "+14.85 ability power"
+                }
+            ],
+            "Dkey": {
+                "filename": "SummonerExhaust.png",
+                "name": "Exhaust",
+                "desc": "Exhausts target enemy champion, reducing their Movement Speed by 30%, and their damage dealt by 40% for 2.5 seconds.",
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/SummonerExhaust.png"
+            },
+            "Fkey": {
+                "filename": "SummonerFlash.png",
+                "name": "Flash",
+                "desc": "Teleports your champion a short distance toward your cursor's location.",
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/SummonerFlash.png"
+            },
+            "champ": "Janna",
+            "key": "Janna",
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/champion/Janna.png",
+            "splash": "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/Janna_0.jpg",
+            "tips": [
+                "Eye of the Storm can be used on allied turrets.",
+                "Quickly firing a Howling Gale without the charge up can be used to heavily disable the other team.",
+                "Timing Janna's ultimate can push enemies away from a wounded ally or even separate enemies."
+            ],
+            "passive": {
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/passive/Janna_Tailwind.png",
+                "desc": "Increases the Movement Speed of all allied champions moving towards Janna by 8%."
+            },
+            "spells": [
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/HowlingGale.png",
+                    "cooldown": "14/13/12/11/10",
+                    "desc": "By creating a localized change in pressure and temperature, Janna is able to create a small storm that grows in size with time. She can activate the spell again to release the storm. On release this storm will fly towards the direction it was cast in, dealing damage and knocking away any enemies in its path."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/SowTheWind.png",
+                    "cooldown": "12",
+                    "desc": "Janna summons an air elemental that passively increases her Movement Speed and enables her to pass through units. She may also activate this ability to deal damage and slow an enemy's Movement Speed. The passive is lost while this ability is on cooldown."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/EyeOfTheStorm.png",
+                    "cooldown": "10",
+                    "desc": "Janna conjures a defensive gale that shields an ally champion or turret from incoming damage and increases their Attack Damage."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/ReapTheWhirlwind.png",
+                    "cooldown": "150/135/120",
+                    "desc": "Janna surrounds herself in a magical storm, throwing enemies back. After the storm has settled, soothing winds heal nearby allies while the ability is active."
+                }
+            ]
+        },
+        {
+            "champMastery": 7,
+            "league": "SILVER V",
+            "summoner": "Riven Bot",
+            "nameid": "topandfeed",
+            "masteries": [
+                {
+                    "name": "Sorcery",
+                    "desc": "+2.0% increased Ability damage",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6114.png"
+                },
+                {
+                    "name": "Feast",
+                    "desc": "Killing a unit restores 20 Health (30 second cooldown)",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6122.png"
+                },
+                {
+                    "name": "Vampirism",
+                    "desc": "+2.0% Lifesteal and Spell Vamp",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6131.png"
+                },
+                {
+                    "name": "Double Edged Sword",
+                    "desc": "Deal 3% additional damage, take 1.5% additional damage.",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6142.png"
+                },
+                {
+                    "name": "Battering Blows",
+                    "desc": "+7% Armor Penetration",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6151.png"
+                },
+                {
+                    "name": "Fervor of Battle",
+                    "desc": "Hitting champions with basic attacks generates a Fervor stack (2 for melee attacks). Stacks of Fervor last 8 seconds (max 8 stacks)and increase your AD by 1-8 for each stack.",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6162.png"
+                },
+                {
+                    "name": "Savagery",
+                    "desc": "Single target attacks and spells deal 5 bonus damage to minions and monsters",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6312.png"
+                },
+                {
+                    "name": "Assassin",
+                    "desc": "Deal 2% increased damage to champions when no allied champions are nearby",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6323.png"
+                },
+                {
+                    "name": "Merciless",
+                    "desc": "Deal 3% increased damage to champions below 40% Health",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6331.png"
+                },
+                {
+                    "name": "Dangerous Game",
+                    "desc": "Champion kills and assists restore 5% of your missing Health and Mana",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6343.png"
+                }
+            ],
+            "runes": [
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/r_1_3.png",
+                    "desc": "+8.55 attack damage"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/b_1_3.png",
+                    "desc": "-7.47% cooldowns"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/y_1_3.png",
+                    "desc": "+9.00 armor"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/bl_1_3.png",
+                    "desc": "+4.50 attack damage"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/bl_1_3.png",
+                    "desc": "-2.50% cooldowns"
+                }
+            ],
+            "Dkey": {
+                "filename": "SummonerFlash.png",
+                "name": "Flash",
+                "desc": "Teleports your champion a short distance toward your cursor's location.",
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/SummonerFlash.png"
+            },
+            "Fkey": {
+                "filename": "SummonerTeleport.png",
+                "name": "Teleport",
+                "desc": "After channeling for 4.5 seconds, teleports your champion to target allied structure, minion, or ward.",
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/SummonerTeleport.png"
+            },
+            "champ": "Riven",
+            "key": "Riven",
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/champion/Riven.png",
+            "splash": "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/Riven_0.jpg",
+            "tips": [
+                "Riven's Broken Wings locks onto the champion your cursor is over at the time of cast. If you want to move past your opponent, make sure that your cursor is past your opponent as well.",
+                "Riven lacks a source of healing or strong defense and must compensate with burst combos. Lead into fights with Broken Wings and Ki Burst, while using Valor to escape and absorb counter-harass."
+            ],
+            "passive": {
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/passive/RivenRunicBlades.png",
+                "desc": "Riven's abilities charge her blade, causing her basic attacks to deal bonus physical damage. Riven's blade may be charged up to three times and expends one charge per attack."
+            },
+            "spells": [
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/RivenTriCleave.png",
+                    "cooldown": "13",
+                    "desc": "Riven lashes out in a series of strikes. This ability can be reactivated three times in a short time frame with the third hit knocking back nearby enemies."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/RivenMartyr.png",
+                    "cooldown": "11/10/9/8/7",
+                    "desc": "Riven emits a Ki Burst, damaging and stunning nearby enemies."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/RivenFeint.png",
+                    "cooldown": "10/9/8/7/6",
+                    "desc": "Riven steps forward a short distance and blocks incoming damage."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/RivenFengShuiEngine.png",
+                    "cooldown": "130/95/60",
+                    "desc": "Riven empowers her keepsake weapon with energy, and gains Attack Damage and Range. During this time, she also gains the ability to use Wind Slash, a powerful ranged attack, once."
+                }
+            ]
+        },
+        {
+            "champMastery": 7,
+            "league": "PLATINUM III",
+            "summoner": "Karma Bot",
+            "nameid": "totallybalanced",
+            "masteries": [
+                {
+                    "name": "Sorcery",
+                    "desc": "+2.0% increased Ability damage",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6114.png"
+                },
+                {
+                    "name": "Expose Weakness",
+                    "desc": "Damaging enemy champions causes them to take 3% more damage from your allies",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6123.png"
+                },
+                {
+                    "name": "Natural Talent",
+                    "desc": "Gain 2 + 0.44 per level Attack Damage, and 3 + 0.67 per level Ability Power (+10 Attack Damage and 15 Ability Power at level 18)",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6134.png"
+                },
+                {
+                    "name": "Bounty Hunter",
+                    "desc": "Deal 1% increased damage for each unique enemy champion you have killed",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6141.png"
+                },
+                {
+                    "name": "Savagery",
+                    "desc": "Single target attacks and spells deal 5 bonus damage to minions and monsters",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6312.png"
+                },
+                {
+                    "name": "Secret Stash",
+                    "desc": "Your Potions and Elixirs last 10% longer.<br><br>Your Health Potions are replaced with Biscuits that restore 15 Health and Mana instantly on use",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6322.png"
+                },
+                {
+                    "name": "Merciless",
+                    "desc": "Deal 3% increased damage to champions below 40% Health",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6331.png"
+                },
+                {
+                    "name": "Dangerous Game",
+                    "desc": "Champion kills and assists restore 5% of your missing Health and Mana",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6343.png"
+                },
+                {
+                    "name": "Intelligence",
+                    "desc": "Your Cooldown Reduction cap is increased to 45% and you gain 5% Cooldown Reduction",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6352.png"
+                },
+                {
+                    "name": "Thunderlord's Decree",
+                    "desc": "Your 3rd attack or damaging spell against the same enemy champion calls down a lightning strike, dealing magic damage in the area. <br><br>Damage: 10 per level, plus 30% of your Bonus Attack Damage, and 10% of your Ability Power (25-15 second cooldown, based on level).",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6362.png"
+                }
+            ],
+            "runes": [
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/r_1_3.png",
+                    "desc": "+7.83 magic penetration"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/b_4_3.png",
+                    "desc": "+1.53 ability power per level (+27.54 at champion level 18)"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/y_1_3.png",
+                    "desc": "+9.00 armor"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/bl_3_3.png",
+                    "desc": "+4.95 ability power"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/bl_4_3.png",
+                    "desc": "+0.43 ability power per level (+7.74 at champion level 18)"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/bl_1_3.png",
+                    "desc": "+2.01 magic penetration"
+                }
+            ],
+            "Dkey": {
+                "filename": "SummonerDot.png",
+                "name": "Ignite",
+                "desc": "Ignites target enemy champion, dealing 70-410 true damage (depending on champion level) over 5 seconds, grants you vision of the target, and reduces healing effects on them for the duration.",
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/SummonerDot.png"
+            },
+            "Fkey": {
+                "filename": "SummonerFlash.png",
+                "name": "Flash",
+                "desc": "Teleports your champion a short distance toward your cursor's location.",
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/SummonerFlash.png"
+            },
+            "champ": "Karma",
+            "key": "Karma",
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/champion/Karma.png",
+            "splash": "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/Karma_0.jpg",
+            "tips": [
+                "Gathering Fire rewards aggressive play. Look to land abilities and basic attacks on your opponent to lower Mantra's cooldown and stay on the offensive.",
+                "When using Focused Resolve, slow your opponents with Inner Flame or speed yourself up with Inspire if you're having trouble sticking to a target. ",
+                "Don't be too conservative with Mantra. Gathering Fire is strongest in teamfights, making it easy to recharge Mantra multiple times."
+            ],
+            "passive": {
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/passive/Karma_Passive.png",
+                "desc": "Reduces Mantra's cooldown each time Karma damages an enemy champion with one of her abilities (Half-effect for Karma's basic attacks)"
+            },
+            "spells": [
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/KarmaQ.png",
+                    "cooldown": "7/6.5/6/5.5/5",
+                    "desc": "Karma sends forth a ball of spirit energy that explodes and deals damage upon hitting an enemy unit. Mantra Bonus: In addition to the explosion, Mantra increases the destructive power of her Inner Flame, creating a cataclysm which deals damage after a short delay."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/KarmaSpiritBind.png",
+                    "cooldown": "12",
+                    "desc": "Karma creates a tether between herself and a targeted enemy, dealing damage and revealing them. If the tether is not broken, the enemy will be rooted and damaged again. Mantra Bonus: Karma strengthens the link, healing herself and extending the root duration."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/KarmaSolKimShield.png",
+                    "cooldown": "10/9.5/9/8.5/8",
+                    "desc": "Karma summons a protective shield that absorbs incoming damage and increases the Movement Speed of the protected ally. Mantra Bonus: Energy radiates out from her target, strengthening the initial shield and applying Inspire to nearby allied champions."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/KarmaMantra.png",
+                    "cooldown": "45/42/39/36",
+                    "desc": "Karma empowers her next ability to do an additional effect. Mantra is available at level 1 and does not require a skill point."
+                }
+            ]
+        }
+    ],
+    "Bullies": [
+        {
+            "champMastery": 4,
+            "league": "DIAMOND II",
+            "summoner": "Kayle Bot",
+            "nameid": "backinseason3arewe",
+            "masteries": [
+                {
+                    "name": "Recovery",
+                    "desc": "+2.0 Health per 5 seconds",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6211.png"
+                },
+                {
+                    "name": "Explorer",
+                    "desc": "+15 Movement Speed in Brush and River",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6221.png"
+                },
+                {
+                    "name": "Runic Armor",
+                    "desc": "Shields, healing, regeneration, and lifesteal on you are 8% stronger",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6231.png"
+                },
+                {
+                    "name": "Insight",
+                    "desc": "Reduces the cooldown of Summoner Spells by 15%",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6241.png"
+                },
+                {
+                    "name": "Wanderer",
+                    "desc": "+3% Movement Speed out of combat",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6311.png"
+                },
+                {
+                    "name": "Secret Stash",
+                    "desc": "Your Potions and Elixirs last 10% longer.<br><br>Your Health Potions are replaced with Biscuits that restore 15 Health and Mana instantly on use",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6322.png"
+                },
+                {
+                    "name": "Meditation",
+                    "desc": "Regenerate 1.25% of your missing Mana every 5 seconds",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6332.png"
+                },
+                {
+                    "name": "Bandit",
+                    "desc": "Gain 1 gold for each nearby minion killed by an ally. <br><br>Gain 3 gold (10 if melee) when hitting an enemy champion with a basic attack (5 second cooldown)",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6342.png"
+                },
+                {
+                    "name": "Intelligence",
+                    "desc": "Your Cooldown Reduction cap is increased to 45% and you gain 5% Cooldown Reduction",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6352.png"
+                },
+                {
+                    "name": "Windspeaker's Blessing",
+                    "desc": "Your heals and shields are 10% stronger. Additionally, your shields and heals on other allies increase their armor by 5-22 (based on level) and their magic resistance by half that amount for 3 seconds.",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6363.png"
+                }
+            ],
+            "runes": [
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/b_1_1.png",
+                    "desc": "-0.47% cooldowns"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/r_1_2.png",
+                    "desc": "+2.72 magic penetration"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/b_1_2.png",
+                    "desc": "-3.35% cooldowns"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/b_3_2.png",
+                    "desc": "+0.92 ability power"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/bl_1_2.png",
+                    "desc": "-3.90% cooldowns"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/r_3_3.png",
+                    "desc": "+17.35 health"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/b_3_3.png",
+                    "desc": "+2.38 ability power"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/y_1_3.png",
+                    "desc": "+5.00 armor"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/y_3_3.png",
+                    "desc": "+2.96 magic resist"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/bl_1_3.png",
+                    "desc": "-2.50% cooldowns"
+                }
+            ],
+            "Dkey": {
+                "filename": "SummonerExhaust.png",
+                "name": "Exhaust",
+                "desc": "Exhausts target enemy champion, reducing their Movement Speed by 30%, and their damage dealt by 40% for 2.5 seconds.",
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/SummonerExhaust.png"
+            },
+            "Fkey": {
+                "filename": "SummonerFlash.png",
+                "name": "Flash",
+                "desc": "Teleports your champion a short distance toward your cursor's location.",
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/SummonerFlash.png"
+            },
+            "champ": "Kayle",
+            "key": "Kayle",
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/champion/Kayle.png",
+            "splash": "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/Kayle_0.jpg",
+            "tips": [
+                "Intervention only grants Kayle or her allies immunity to damage. Slows and stuns can still be applied, so trap them if they're being overzealous.",
+                "Kayle is usually a fragile target. If you see her ultimate cast on an ally, switch to attacking her.",
+                "Be sure to look at what items Kayle is building to determine what role she is fulfilling on her team."
+            ],
+            "passive": {
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/passive/Kayle_Passive.png",
+                "desc": "When Kayle attacks a champion, the target loses 3% Armor and Magic Resist for 5 seconds. This effect stacks up to 5 times."
+            },
+            "spells": [
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/JudicatorReckoning.png",
+                    "cooldown": "8",
+                    "desc": "Blasts an enemy unit with angelic force, dealing damage, slowing Movement Speed, and applying Holy Fervor."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/JudicatorDivineBlessing.png",
+                    "cooldown": "15",
+                    "desc": "Blesses a target friendly champion, granting them increased Movement Speed and healing them."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/JudicatorRighteousFury.png",
+                    "cooldown": "16",
+                    "desc": "Passive: Grants Kayle on Hit magic Damage. Activate: Ignite Kayle's sword with a holy flame, granting Kayle a ranged attack that damages multiple enemies and deals bonus magic damage."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/JudicatorIntervention.png",
+                    "cooldown": "100/90/80",
+                    "desc": "Shields Kayle or an ally for a short time, causing them to be immune to damage."
+                }
+            ]
+        },
+        {
+            "champMastery": 2,
+            "league": "MASTER III",
+            "summoner": "Vladamir Bot",
+            "nameid": "letmejustdodgeeverything",
+            "masteries": [
+                {
+                    "name": "Recovery",
+                    "desc": "+2.0 Health per 5 seconds",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6211.png"
+                },
+                {
+                    "name": "Explorer",
+                    "desc": "+15 Movement Speed in Brush and River",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6221.png"
+                },
+                {
+                    "name": "Runic Armor",
+                    "desc": "Shields, healing, regeneration, and lifesteal on you are 8% stronger",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6231.png"
+                },
+                {
+                    "name": "Insight",
+                    "desc": "Reduces the cooldown of Summoner Spells by 15%",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6241.png"
+                },
+                {
+                    "name": "Savagery",
+                    "desc": "Single target attacks and spells deal 5 bonus damage to minions and monsters",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6312.png"
+                },
+                {
+                    "name": "Assassin",
+                    "desc": "Deal 2% increased damage to champions when no allied champions are nearby",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6323.png"
+                },
+                {
+                    "name": "Merciless",
+                    "desc": "Deal 3% increased damage to champions below 40% Health",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6331.png"
+                },
+                {
+                    "name": "Dangerous Game",
+                    "desc": "Champion kills and assists restore 5% of your missing Health and Mana",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6343.png"
+                },
+                {
+                    "name": "Intelligence",
+                    "desc": "Your Cooldown Reduction cap is increased to 45% and you gain 5% Cooldown Reduction",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6352.png"
+                },
+                {
+                    "name": "Stormraider's Surge",
+                    "desc": "Dealing 30% of a champion's max Health within 2.5 seconds grants you 40% Movement Speed and 75% Slow Resistance for 3 seconds (10 second cooldown).",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6361.png"
+                }
+            ],
+            "runes": [
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/bl_3_1.png",
+                    "desc": "+14.50 health"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/b_3_2.png",
+                    "desc": "+3.12 magic resist"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/r_1_3.png",
+                    "desc": "+7.83 magic penetration"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/b_3_3.png",
+                    "desc": "+7.14 ability power"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/y_1_3.png",
+                    "desc": "+4.00 armor"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/y_3_3.png",
+                    "desc": "+2.95 ability power"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/bl_2_3.png",
+                    "desc": "-0.56% cooldowns per level (-10.00% at champion level 18)"
+                }
+            ],
+            "Dkey": {
+                "filename": "SummonerTeleport.png",
+                "name": "Teleport",
+                "desc": "After channeling for 4.5 seconds, teleports your champion to target allied structure, minion, or ward.",
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/SummonerTeleport.png"
+            },
+            "Fkey": {
+                "filename": "SummonerFlash.png",
+                "name": "Flash",
+                "desc": "Teleports your champion a short distance toward your cursor's location.",
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/SummonerFlash.png"
+            },
+            "champ": "Vladimir",
+            "key": "Vladimir",
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/champion/Vladimir.png",
+            "splash": "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/Vladimir_0.jpg",
+            "tips": [
+                "Try to take Vladimir down before Hemoplague detonates, as it will heal him for each afflicted enemy Champion.",
+                "Making Vladimir use Sanguine Pool at the start of a fight will maximize the Health cost of the ability to him.",
+                "Items that counter Health stacking, such as Liandry's Torment and Blade of the Ruined King, are very effective against Vladimir."
+            ],
+            "passive": {
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/passive/VladimirP.png",
+                "desc": "Every 40 points of bonus Health gives Vladimir 1 Ability Power and every 1 point of Ability Power gives Vladimir 1.4 bonus Health (does not stack with itself)."
+            },
+            "spells": [
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/VladimirQ.png",
+                    "cooldown": "9/8/7/6/5",
+                    "desc": "Vladimir steals life from the target enemy. When Vladimir's resource is full, Transfusion will benefit from massively increased damage and healing for a brief time."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/VladimirSanguinePool.png",
+                    "cooldown": "28/25/22/19/16",
+                    "desc": "Vladimir sinks into a pool of blood, becoming untargetable for 2 seconds. Additionally, enemies on the pool are slowed and Vladimir siphons life from them."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/VladimirE.png",
+                    "cooldown": "13/11/9/7/5",
+                    "desc": "Vladimir pays his own health to charge up a reservoir of blood which, when released, deals damage in the area around him but can be blocked by enemy units."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/VladimirHemoplague.png",
+                    "cooldown": "150/135/120",
+                    "desc": "Vladimir infects an area with a virulent plague. Affected enemies take increased damage for the duration. After a few seconds, Hemoplague deals magic damage to infected enemies and heals Vladimir for each enemy Champion hit."
+                }
+            ]
+        },
+        {
+            "champMastery": 6,
+            "league": "BRONZE V",
+            "summoner": "Lux Bot",
+            "nameid": "reaperbeamwaifu",
+            "masteries": [
+                {
+                    "name": "Sorcery",
+                    "desc": "+2.0% increased Ability damage",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6114.png"
+                },
+                {
+                    "name": "Feast",
+                    "desc": "Killing a unit restores 20 Health (30 second cooldown)",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6122.png"
+                },
+                {
+                    "name": "Vampirism",
+                    "desc": "+2.0% Lifesteal and Spell Vamp",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6131.png"
+                },
+                {
+                    "name": "Double Edged Sword",
+                    "desc": "Deal 3% additional damage, take 1.5% additional damage.",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6142.png"
+                },
+                {
+                    "name": "Wanderer",
+                    "desc": "+3% Movement Speed out of combat",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6311.png"
+                },
+                {
+                    "name": "Secret Stash",
+                    "desc": "Your Potions and Elixirs last 10% longer.<br><br>Your Health Potions are replaced with Biscuits that restore 15 Health and Mana instantly on use",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6322.png"
+                },
+                {
+                    "name": "Merciless",
+                    "desc": "Deal 3% increased damage to champions below 40% Health",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6331.png"
+                },
+                {
+                    "name": "Dangerous Game",
+                    "desc": "Champion kills and assists restore 5% of your missing Health and Mana",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6343.png"
+                },
+                {
+                    "name": "Precision",
+                    "desc": "Gain 6 Lethality and 1.5 + 0.25 per level Magic Penetration",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6351.png"
+                },
+                {
+                    "name": "Thunderlord's Decree",
+                    "desc": "Your 3rd attack or damaging spell against the same enemy champion calls down a lightning strike, dealing magic damage in the area. <br><br>Damage: 10 per level, plus 30% of your Bonus Attack Damage, and 10% of your Ability Power (25-15 second cooldown, based on level).",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6362.png"
+                }
+            ],
+            "runes": [
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/r_1_3.png",
+                    "desc": "+7.83 magic penetration"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/b_3_3.png",
+                    "desc": "+12.06 magic resist"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/y_1_3.png",
+                    "desc": "+9.00 armor"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/bl_3_3.png",
+                    "desc": "+14.85 ability power"
+                }
+            ],
+            "Dkey": {
+                "filename": "SummonerFlash.png",
+                "name": "Flash",
+                "desc": "Teleports your champion a short distance toward your cursor's location.",
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/SummonerFlash.png"
+            },
+            "Fkey": {
+                "filename": "SummonerDot.png",
+                "name": "Ignite",
+                "desc": "Ignites target enemy champion, dealing 70-410 true damage (depending on champion level) over 5 seconds, grants you vision of the target, and reduces healing effects on them for the duration.",
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/SummonerDot.png"
+            },
+            "champ": "Lux",
+            "key": "Lux",
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/champion/Lux.png",
+            "splash": "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/Lux_0.jpg",
+            "tips": [
+                "Lux has powerful zone control abilities. Try to spread out and attack from different directions so she cannot lock down a specific area.",
+                "When retreating with low health, be prepared to dodge Lux's Final Spark, a red targeting beam fires prior to the main beam, so try to move to the side if possible."
+            ],
+            "passive": {
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/passive/LuxIlluminatingFraulein.png",
+                "desc": "Lux's damaging spells charge the target with energy for 6 seconds. Lux's next attack ignites the energy, dealing bonus magic damage (depending on Lux's level) to the target."
+            },
+            "spells": [
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/LuxLightBinding.png",
+                    "cooldown": "15/14/13/12/11",
+                    "desc": "Lux releases a sphere of light that binds and deals damage to up to two enemy units."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/LuxPrismaticWave.png",
+                    "cooldown": "14/13/12/11/10",
+                    "desc": "Lux throws her wand and bends the light around any friendly target it touches, protecting them from enemy damage."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/LuxLightStrikeKugel.png",
+                    "cooldown": "10",
+                    "desc": "Fires an anomaly of twisted light to an area, which slows nearby enemies. Lux can detonate it to damage enemies in the area of effect."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/LuxMaliceCannon.png",
+                    "cooldown": "80/65/50",
+                    "desc": "After gathering energy, Lux fires a beam of light that deals damage to all targets in the area. If Final Spark kills a champion, part of its cooldown is refunded. In addition, triggers Lux's passive ability and refreshes the Illumination debuff duration."
+                }
+            ]
+        },
+        {
+            "champMastery": 4,
+            "league": "SILVER IV",
+            "summoner": "Kindred Bot",
+            "nameid": "ultandsavetheteam",
+            "masteries": [
+                {
+                    "name": "Fury",
+                    "desc": "+4% Attack Speed",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6111.png"
+                },
+                {
+                    "name": "Feast",
+                    "desc": "Killing a unit restores 20 Health (30 second cooldown)",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6122.png"
+                },
+                {
+                    "name": "Vampirism",
+                    "desc": "+2.0% Lifesteal and Spell Vamp",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6131.png"
+                },
+                {
+                    "name": "Battle Trance",
+                    "desc": "Gain up to 3% increased damage over 3 seconds when in combat with enemy Champions",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6143.png"
+                },
+                {
+                    "name": "Battering Blows",
+                    "desc": "+7% Armor Penetration",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6151.png"
+                },
+                {
+                    "name": "Fervor of Battle",
+                    "desc": "Hitting champions with basic attacks generates a Fervor stack (2 for melee attacks). Stacks of Fervor last 8 seconds (max 8 stacks)and increase your AD by 1-8 for each stack.",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6162.png"
+                },
+                {
+                    "name": "Recovery",
+                    "desc": "+2.0 Health per 5 seconds",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6211.png"
+                },
+                {
+                    "name": "Tough Skin",
+                    "desc": "You take 2 less damage from champion and neutral monster basic attacks",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6223.png"
+                },
+                {
+                    "name": "Veteran's Scars",
+                    "desc": "+50 Health",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6232.png"
+                },
+                {
+                    "name": "Fearless",
+                    "desc": "Gain 10% +1.5 per level bonus Armor and Magic Resist when damaged by an enemy champion for 2 seconds (9s Cooldown)",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6243.png"
+                }
+            ],
+            "runes": [
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/r_1_3.png",
+                    "desc": "+8.55 attack damage"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/b_4_3.png",
+                    "desc": "+1.44 magic resist per level (+27.00 at champion level 18)"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/y_1_3.png",
+                    "desc": "+9.00 armor"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/bl_1_3.png",
+                    "desc": "+6.75 attack damage"
+                }
+            ],
+            "Dkey": {
+                "filename": "SummonerFlash.png",
+                "name": "Flash",
+                "desc": "Teleports your champion a short distance toward your cursor's location.",
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/SummonerFlash.png"
+            },
+            "Fkey": {
+                "filename": "SummonerSmite.png",
+                "name": "Smite",
+                "desc": "Deals 390-1000 true damage (depending on champion level) to target epic or large monster or enemy minion. Restores Health based on your maximum life when used against monsters.",
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/SummonerSmite.png"
+            },
+            "champ": "Kindred",
+            "key": "Kindred",
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/champion/Kindred.png",
+            "splash": "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/Kindred_0.jpg",
+            "tips": [
+                "Kindred is fragile - turn the pressure up on her, and she will be forced to play cautiously.",
+                "Clear the Hunts Wolf activates on jungle camps to slow down Kindred's damage output.",
+                "When Kindred uses Lamb's Respite get inside, it stops all champions from dying."
+            ],
+            "passive": {
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/passive/Kindred_Passive.png",
+                "desc": "Kindred can mark targets to Hunt. Successfully completing a Hunt permanently empowers Kindred's basic attacks and Dance of Arrows."
+            },
+            "spells": [
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/KindredQ.png",
+                    "cooldown": "9",
+                    "desc": "Kindred tumbles and shoots up to three arrows at nearby targets."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/KindredW.png",
+                    "cooldown": "18/17/16/15/14",
+                    "desc": "Wolf enrages and attacks enemies around him."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/KindredEWrapper.png",
+                    "cooldown": "16/15/14/13/12",
+                    "desc": "Lamb fires a carefully placed shot, slowing the target. If Lamb attacks the target two more times, her third attack instead directs Wolf to pounce on the enemy, savaging them for massive damage."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/KindredR.png",
+                    "cooldown": "160/130/100",
+                    "desc": "Lamb grants all living things inside a zone a respite from death. Until the effect ends, nothing can die. At the end, units are healed."
+                }
+            ]
+        },
+        {
+            "champMastery": 5,
+            "league": "GOLD I",
+            "summoner": "Vayne Bot",
+            "nameid": "botandfeed",
+            "masteries": [
+                {
+                    "name": "Fury",
+                    "desc": "+4% Attack Speed",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6111.png"
+                },
+                {
+                    "name": "Feast",
+                    "desc": "Killing a unit restores 20 Health (30 second cooldown)",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6122.png"
+                },
+                {
+                    "name": "Vampirism",
+                    "desc": "+2.0% Lifesteal and Spell Vamp",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6131.png"
+                },
+                {
+                    "name": "Bounty Hunter",
+                    "desc": "Deal 1% increased damage for each unique enemy champion you have killed",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6141.png"
+                },
+                {
+                    "name": "Battering Blows",
+                    "desc": "+7% Armor Penetration",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6151.png"
+                },
+                {
+                    "name": "Warlord's Bloodlust",
+                    "desc": "Moving or attacking will charge an Energized attack. Energized attacks heal for 5-40% of your total Attack Damage (amplified by Critical Strikes) and grant 30% Movement Speed for 0.75 seconds.",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6161.png"
+                },
+                {
+                    "name": "Recovery",
+                    "desc": "+2.0 Health per 5 seconds",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6211.png"
+                },
+                {
+                    "name": "Tough Skin",
+                    "desc": "You take 2 less damage from champion and neutral monster basic attacks",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6223.png"
+                },
+                {
+                    "name": "Veteran's Scars",
+                    "desc": "+50 Health",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6232.png"
+                },
+                {
+                    "name": "Insight",
+                    "desc": "Reduces the cooldown of Summoner Spells by 15%",
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/mastery/6241.png"
+                }
+            ],
+            "runes": [
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/r_1_3.png",
+                    "desc": "+8.55 attack damage"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/b_3_3.png",
+                    "desc": "+12.06 magic resist"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/y_1_3.png",
+                    "desc": "+9.00 armor"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/rune/bl_3_3.png",
+                    "desc": "+13.50% attack speed"
+                }
+            ],
+            "Dkey": {
+                "filename": "SummonerFlash.png",
+                "name": "Flash",
+                "desc": "Teleports your champion a short distance toward your cursor's location.",
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/SummonerFlash.png"
+            },
+            "Fkey": {
+                "filename": "SummonerHeal.png",
+                "name": "Heal",
+                "desc": "Restores 90-345 Health (depending on champion level) and grants 30% Movement Speed for 1 second to you and target allied champion. This healing is halved for units recently affected by Summoner Heal.",
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/SummonerHeal.png"
+            },
+            "champ": "Vayne",
+            "key": "Vayne",
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/champion/Vayne.png",
+            "splash": "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/Vayne_0.jpg",
+            "tips": [
+                "Vayne is fragile - turn the pressure up on her and she will be forced to play cautiously.",
+                "Deny Vayne the opportunity to pin you against walls."
+            ],
+            "passive": {
+                "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/passive/Vayne_NightHunter.png",
+                "desc": "Vayne ruthlessly hunts evil-doers. She gains 30 Movement Speed when moving toward nearby enemy champions."
+            },
+            "spells": [
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/VayneTumble.png",
+                    "cooldown": "6/5/4/3/2",
+                    "desc": "Vayne tumbles, maneuvering to carefully place her next shot. Her next attack deals bonus damage."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/VayneSilveredBolts.png",
+                    "cooldown": "6",
+                    "desc": "Vayne tips her bolts with a rare metal, toxic to evil things. The third consecutive attack or ability against the same target deals a percentage of the target's maximum Health as bonus true damage. (Max: 200 damage vs. Monsters)"
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/VayneCondemn.png",
+                    "cooldown": "20/18/16/14/12",
+                    "desc": "Vayne draws a heavy crossbow from her back, and fires a huge bolt at her target, knocking them back and dealing damage. If they collide with terrain, they are impaled, dealing bonus damage and stunning them."
+                },
+                {
+                    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/VayneInquisition.png",
+                    "cooldown": "100/85/70",
+                    "desc": "Readying herself for an epic confrontation, Vayne gains increased Attack Damage, Invisibility during Tumble, and triple the bonus Movement Speed from Night Hunter."
+                }
+            ]
+        }
+    ]
+}

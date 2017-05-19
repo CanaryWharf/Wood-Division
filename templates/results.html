@@ -7,8 +7,9 @@
         {% for player in bully %}
         <div class="PlayaButton bullybutton" onclick="showContainer('{{'p' + player.nameid}}')">
             <img src="{{player.image}}"></img>
-            <img src="{{url_for('static', filename=player.league.split()[0] + ".png")}}" alt="{{player.league}}"></img>
+
             <h1> {{player.league}} </h1>
+            <img src="{{url_for('static', filename=player.league.split()[0] + ".png")}}" alt="{{player.league}}"></img>
         </div>
 
         {% endfor %}
@@ -139,6 +140,7 @@
         <div class="PlayaButton friendbutton" onclick="showContainer('{{'p' + player.nameid}}')">
             <img src="{{url_for('static', filename=player.league.split()[0] + ".png")}}" alt="{{player.league}}"></img>
 
+            <h1> {{player.league}} </h1>
             <img src="{{player.image}}"></img>
         </div>
 

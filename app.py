@@ -3,7 +3,7 @@ from forms import SummonerForm
 import backend
 import simplejson as json
 import os
-from pprint import pprint
+from pprint import pprint  # NOQA
 app = Flask(__name__)
 app.config.from_object('config')
 
@@ -26,7 +26,7 @@ def about():
     return render_template('about.html')
 
 
-@app.route('/viewgame', methods=['GET', 'POST'])
+@app.route('/viewgame', methods=['POST'])
 def viewgame():
     test = True
     if request.method == "POST":
