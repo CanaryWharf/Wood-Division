@@ -11,6 +11,9 @@ app.config.from_object(config)
 here = os.path.dirname(__file__)
 
 
+@app.route('/riot.txt')
+def ritopls():
+    return app.send_static_file('riot.txt')
 
 @app.route('/')
 def index():
