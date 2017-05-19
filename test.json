@@ -1,0 +1,16 @@
+{
+    "PlayerID": {
+        "ChampData": {
+            "ChampID": "Id",
+            "Stuff": "Tings"
+        },
+        "Mastery Rank": "Rank",
+        "League": "Wood 5",
+        "Masteries": {
+            "Stuff": "Tings"
+        },
+        "Runes": {
+            "Stuff": "Tings"
+        }
+    }
+}

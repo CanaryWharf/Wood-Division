@@ -1,0 +1,70 @@
+{
+    "profileIconId": 1627,
+    "championId": 31,
+    "summonerName": "HOOIJDONK",
+    "runes": [
+        {
+            "count": 9,
+            "runeId": 5245
+        },
+        {
+            "count": 9,
+            "runeId": 5289
+        },
+        {
+            "count": 9,
+            "runeId": 5317
+        },
+        {
+            "count": 3,
+            "runeId": 5337
+        }
+    ],
+    "bot": false,
+    "masteries": [
+        {
+            "masteryId": 6114,
+            "rank": 5
+        },
+        {
+            "masteryId": 6122,
+            "rank": 1
+        },
+        {
+            "masteryId": 6134,
+            "rank": 5
+        },
+        {
+            "masteryId": 6141,
+            "rank": 1
+        },
+        {
+            "masteryId": 6311,
+            "rank": 5
+        },
+        {
+            "masteryId": 6321,
+            "rank": 1
+        },
+        {
+            "masteryId": 6332,
+            "rank": 5
+        },
+        {
+            "masteryId": 6343,
+            "rank": 1
+        },
+        {
+            "masteryId": 6351,
+            "rank": 5
+        },
+        {
+            "masteryId": 6362,
+            "rank": 1
+        }
+    ],
+    "spell2Id": 4,
+    "teamId": 100,
+    "spell1Id": 11, 
+    "summonerId": 56538172
+}

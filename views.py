@@ -4,8 +4,9 @@ import backend
 import simplejson as json
 import os
 from pprint import pprint  # NOQA
+import config
 app = Flask(__name__)
-app.config.from_object('config')
+app.config.from_object(config)
 
 
 

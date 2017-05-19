@@ -1,0 +1,146 @@
+{
+    "champMastery": 4,
+    "league": "BRONZE II",
+    "summoner": "Chronogate",
+    "nameid": "81228830",
+    "masteries": [
+        {
+            "name": "Recovery",
+            "desc": "+2.0 Health per 5 seconds",
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/mastery/6211.png"
+        },
+        {
+            "name": "Explorer",
+            "desc": "+15 Movement Speed in Brush and River",
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/mastery/6221.png"
+        },
+        {
+            "name": "Runic Armor",
+            "desc": "Shields, healing, regeneration, and lifesteal on you are 8% stronger",
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/mastery/6231.png"
+        },
+        {
+            "name": "Insight",
+            "desc": "Reduces the cooldown of Summoner Spells by 15%",
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/mastery/6241.png"
+        },
+        {
+            "name": "Wanderer",
+            "desc": "+3% Movement Speed out of combat",
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/mastery/6311.png"
+        },
+        {
+            "name": "Secret Stash",
+            "desc": "Your Potions and Elixirs last 10% longer.<br><br>Your Health Potions are replaced with Biscuits that restore 15 Health and Mana instantly on use",
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/mastery/6322.png"
+        },
+        {
+            "name": "Meditation",
+            "desc": "Regenerate 1.25% of your missing Mana every 5 seconds",
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/mastery/6332.png"
+        },
+        {
+            "name": "Bandit",
+            "desc": "Gain 1 gold for each nearby minion killed by an ally. <br><br>Gain 3 gold (10 if melee) when hitting an enemy champion with a basic attack (5 second cooldown)",
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/mastery/6342.png"
+        },
+        {
+            "name": "Intelligence",
+            "desc": "Your Cooldown Reduction cap is increased to 45% and you gain 5% Cooldown Reduction",
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/mastery/6352.png"
+        },
+        {
+            "name": "Windspeaker's Blessing",
+            "desc": "Your heals and shields are 10% stronger. Additionally, your shields and heals on other allies increase their armor by 5-22 (based on level) and their magic resistance by half that amount for 3 seconds.",
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/mastery/6363.png"
+        }
+    ],
+    "runes": [
+        {
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/rune/b_1_1.png",
+            "desc": "-0.47% cooldowns"
+        },
+        {
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/rune/r_1_2.png",
+            "desc": "+2.72 magic penetration"
+        },
+        {
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/rune/b_1_2.png",
+            "desc": "-3.35% cooldowns"
+        },
+        {
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/rune/b_3_2.png",
+            "desc": "+0.92 ability power"
+        },
+        {
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/rune/bl_1_2.png",
+            "desc": "-3.90% cooldowns"
+        },
+        {
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/rune/r_3_3.png",
+            "desc": "+17.35 health"
+        },
+        {
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/rune/b_3_3.png",
+            "desc": "+2.38 ability power"
+        },
+        {
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/rune/y_1_3.png",
+            "desc": "+5.00 armor"
+        },
+        {
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/rune/y_3_3.png",
+            "desc": "+2.96 magic resist"
+        },
+        {
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/rune/bl_1_3.png",
+            "desc": "-2.50% cooldowns"
+        }
+    ],
+    "Dkey": {
+        "filename": "SummonerExhaust.png",
+        "name": "Exhaust",
+        "desc": "Exhausts target enemy champion, reducing their Movement Speed by 30%, and their damage dealt by 40% for 2.5 seconds.",
+        "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/spell/SummonerExhaust.png"
+    },
+    "Fkey": {
+        "filename": "SummonerFlash.png",
+        "name": "Flash",
+        "desc": "Teleports your champion a short distance toward your cursor's location.",
+        "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/spell/SummonerFlash.png"
+    },
+    "champ": "Kayle",
+    "key": "Kayle",
+    "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/champion/Kayle.png",
+    "tips": [
+        "Intervention only grants Kayle or her allies immunity to damage. Slows and stuns can still be applied, so trap them if they're being overzealous.",
+        "Kayle is usually a fragile target. If you see her ultimate cast on an ally, switch to attacking her.",
+        "Be sure to look at what items Kayle is building to determine what role she is fulfilling on her team."
+    ],
+    "passive": {
+        "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/passive/Kayle_Passive.png",
+        "desc": "When Kayle attacks a champion, the target loses 3% Armor and Magic Resist for 5 seconds. This effect stacks up to 5 times."
+    },
+    "spells": [
+        {
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/spell/JudicatorReckoning.png",
+            "cooldown": "8",
+            "desc": "Blasts an enemy unit with angelic force, dealing damage, slowing Movement Speed, and applying Holy Fervor."
+        },
+        {
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/spell/JudicatorDivineBlessing.png",
+            "cooldown": "15",
+            "desc": "Blesses a target friendly champion, granting them increased Movement Speed and healing them."
+        },
+        {
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/spell/JudicatorRighteousFury.png",
+            "cooldown": "16",
+            "desc": "Passive: Grants Kayle on Hit magic Damage. Activate: Ignite Kayle's sword with a holy flame, granting Kayle a ranged attack that damages multiple enemies and deals bonus magic damage."
+        },
+        {
+            "image": "http://ddragon.leagueoflegends.com/cdn/7.9.1/img/spell/JudicatorIntervention.png",
+            "cooldown": "100/90/80",
+            "desc": "Shields Kayle or an ally for a short time, causing them to be immune to damage."
+        }
+    ]
+}
