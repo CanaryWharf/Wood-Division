@@ -1,4 +1,4 @@
-cd ./DDragon
+cd ./static/DDragon
 wget http://ddragon.leagueoflegends.com/cdn/dragontail-$1.tgz
 mkdir $1
 tar -xzvf dragontail-$1.tgz -C $1
